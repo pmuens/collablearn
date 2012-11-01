@@ -1,0 +1,13 @@
+.navbar.navbar-inverse.navbar-fixed-top
+  .navbar-inner
+    .container
+      = link_to 'Collablearn', :root, class: 'brand'
+      %ul.nav.pull-right
+        - if logged_in?
+          %li
+            = link_to raw('<i class="icon-home"></i> ' + current_user.username), current_user
+          %li
+            = link_to raw('<i class="icon-off"></i> Logout'), logout_path
+        - else
+          %li
+            = link_to 'Login', new_session_path

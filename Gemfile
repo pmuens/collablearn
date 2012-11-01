@@ -21,5 +21,5 @@ end
 gem 'jquery-rails'
 gem 'rails_autolink'
 gem 'rails-i18n'
-gem 'haml'
+gem 'haml-rails'
 gem 'will_paginate'

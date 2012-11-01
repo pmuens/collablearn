@@ -1,0 +1,63 @@
+.row
+  .span12
+    .hero-unit
+      %h1
+        Collablearn
+      %p
+        Collablearn ermöglicht es dir online kollaborativ zu lernen! Lerne wo und wann immer du willst!
+.row
+  .span4.offset1
+    .page-header
+      %h1
+        Features
+    %ul
+      %li
+        Fragen erstellen und von überall aus abrufen
+      %li
+        Neue interessante Themenbereiche kennenlernen
+      %li
+        In der Community mitwirken
+      %li
+        Zusammen mit anderen lernen
+      %li
+        Deine Leistung steigern
+      %li
+        Es ist kostenlos!
+  .span5.offset1
+    .page-header
+      %h1
+        Registrieren
+    = form_for(@user, html: { class: 'form-horizontal' } ) do |f|
+      = render 'shared/error_messages', object: @user
+      .control-group
+        %label.control-label{for: 'register_email'}
+          E-Mail
+        .controls
+          = f.text_field :email, id: 'register_email'
+      .control-group
+        %label.control-label{for: 'register_username'}
+          Benutzername
+        .controls
+          = f.text_field :username, id: 'username'
+      .control-group
+        %label.control-label{for: 'register_password'}
+          Passwort
+        .controls
+          = f.password_field :password, id: 'register_password'
+      .control-group
+        %label.control-label{for: 'register_password_confirmation'}
+          Passwort wiederholen
+        .controls
+          = f.password_field :password_confirmation, id: 'register_password_confirmation'
+      .control-group
+        .controls
+          %label.checkbox
+            = f.check_box 'terms_of_service'
+            Ich akzeptiere die
+            = link_to 'Nutzungsbedingungen', terms_of_service_path
+      .control-group
+        .controls
+          = f.submit 'Registrieren', disable_with: 'Registrieren', class: 'btn btn-primary'
+    %p
+      Du hast schon einen Account? Dann kannst du dich hier 
+      = link_to 'einloggen', new_session_path
