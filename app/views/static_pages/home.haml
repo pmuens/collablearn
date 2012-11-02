@@ -5,12 +5,11 @@
         Collablearn
       %p
         Collablearn ermöglicht es dir online kollaborativ zu lernen! Lerne wo und wann immer du willst!
-.row
   .span4.offset1
     .page-header
       %h1
         Features
-    %ul
+    %ul.featurelist
       %li
         Fragen erstellen und von überall aus abrufen
       %li
@@ -30,25 +29,25 @@
     = form_for(@user, html: { class: 'form-horizontal' } ) do |f|
       = render 'shared/error_messages', object: @user
       .control-group
-        %label.control-label{for: 'register_email'}
+        %label.control-label{for: 'email'}
           E-Mail
         .controls
-          = f.text_field :email, id: 'register_email'
+          = f.text_field :email, id: 'email'
       .control-group
-        %label.control-label{for: 'register_username'}
+        %label.control-label{for: 'username'}
           Benutzername
         .controls
           = f.text_field :username, id: 'username'
       .control-group
-        %label.control-label{for: 'register_password'}
+        %label.control-label{for: 'password'}
           Passwort
         .controls
-          = f.password_field :password, id: 'register_password'
+          = f.password_field :password, id: 'password'
       .control-group
-        %label.control-label{for: 'register_password_confirmation'}
+        %label.control-label{for: 'password_confirmation'}
           Passwort wiederholen
         .controls
-          = f.password_field :password_confirmation, id: 'register_password_confirmation'
+          = f.password_field :password_confirmation, id: 'password_confirmation'
       .control-group
         .controls
           %label.checkbox
@@ -60,4 +59,4 @@
           = f.submit 'Registrieren', disable_with: 'Registrieren', class: 'btn btn-primary'
     %p
       Du hast schon einen Account? Dann kannst du dich hier 
-      = link_to 'einloggen', new_session_path
+      = link_to 'einloggen.', new_session_path

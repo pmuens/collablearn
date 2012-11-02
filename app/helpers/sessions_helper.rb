@@ -28,15 +28,10 @@ module SessionsHelper
   def authenticate
     deny_access unless logged_in?
   end
-
-  #def authorized_user(company_id)
-  #  @company = current_user.companies.find_by_id(company_id)
-  #  redirect_to root_path if @company.nil?
-  #end
   
   def deny_access
     store_location
-    redirect_to login_path, flash: { info: 'Logge dich bitte ein, um diese Seite zu sehen' }
+    redirect_to login_path, flash: { info: 'Logge dich bitte ein, um diese Seite zu sehen.' }
   end
   
   def redirect_back_or(default)

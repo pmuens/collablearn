@@ -1,3 +1,12 @@
 body { 
   padding-top: 60px;
 }
+
+ul.dropdown-menu {
+  color: #333;
+  form {
+    width: 200px;
+    padding: 5px 20px;
+    margin-bottom: 0;
+  }
+}

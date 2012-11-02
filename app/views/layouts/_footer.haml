@@ -1,5 +1,16 @@
 %footer.footer
   .container
     %p.pull-right
-      %a(href="#")
+      %a(href='#')
         Nach oben
+    %ul.footer-links
+      %li
+        = link_to 'Impressum', masthead_path
+      %li.muted
+        ·
+      %li
+        = link_to 'Nutzungsbedingungen', terms_of_service_path
+      %li.muted
+        ·
+      %li
+        = link_to 'Kontakt', contact_path

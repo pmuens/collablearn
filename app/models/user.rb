@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   attr_accessible :email, :is_blocked, :is_validated, :password, :password_confirmation, :salt, :username, :terms_of_service
 
+  #dependent destroy --> friendships, lists
+
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   username_regex = /\A[A-Za-z\d\-\_\.\+]+\z/
 
@@ -9,6 +11,7 @@ class User < ActiveRecord::Base
   validates :username, presence: true, format: { with: username_regex }, uniqueness: { case_sensitive: false }
   validates_acceptance_of :terms_of_service
 
+  before_save { |user| user.email = user.email.downcase }
   before_save :encrypt_password
 
   def has_password?(submitted_password)
@@ -17,7 +20,7 @@ class User < ActiveRecord::Base
   
   class << self
     def authenticate(email, submitted_password)
-      user = find_by_email(email)
+      user = find_by_email(email.downcase)
       (user && user.has_password?(submitted_password)) ? user : nil
     end
   
@@ -28,7 +31,6 @@ class User < ActiveRecord::Base
   end
   
   private
-
     def encrypt_password
       self.salt = make_salt unless has_password?(password)
       self.password = encrypt(password)

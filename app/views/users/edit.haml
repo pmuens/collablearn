@@ -1,0 +1,50 @@
+.row
+  .span12
+    %ul.breadcrumb
+      %li
+        = link_to 'Home', user_path(current_user)
+        %span.divider
+          #{'/'}
+      %li.active
+        Einstellungen
+    .page-header
+      %h1
+        Einstellungen
+  .span5.offset1
+    %h2
+      Passwort ändern
+    = form_for(@user, html: { class: 'form-horizontal' } ) do |f|
+      = render 'shared/error_messages', object: @user
+      .control-group
+        %label.control-label{for: 'password'}
+          Neues Passwort
+        .controls
+          = f.password_field :password, id: 'password'
+      .control-group
+        %label.control-label{for: 'password_confirmation'}
+          Passwort wiederholen
+        .controls
+          = f.password_field :password_confirmation, id: 'password_confirmation'
+      .control-group
+        .controls
+          = f.submit 'Passwort ändern', disable_with: 'Passwort ändern', class: 'btn btn-primary'
+  .span5.offset1
+    .modal.hide.fade#delete_user_modal
+      .modal-header
+        %button.close(type='button' data-dismiss='modal')
+        %h3
+          Account löschen?
+      .modal-body
+        %p
+          Möchtest du deinen Account wirklich löschen? :-(
+        %p
+          Dieser Schritt kann nicht rückgängig gemacht werden.
+      .modal-footer
+        %a.btn(href='#' data-dismiss='modal')
+          Abbrechen
+        = link_to 'Account löschen', @user, method: :delete, class: 'btn btn-danger'
+    %h2
+      Account löschen
+    %p
+      Du möchtest wirklich deinen Account löschen? :-(
+    = link_to 'Account löschen', '#delete_user_modal', data: { toggle: 'modal' }, class: 'btn btn-danger'

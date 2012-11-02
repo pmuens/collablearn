@@ -4,18 +4,18 @@
       Login
   = form_for(:session, url: sessions_path, html: { class: 'form-horizontal' }) do |f|
     .control-group
-      %label.control-label{for: 'login_email'}
+      %label.control-label{for: 'email'}
         E-Mail
       .controls
-        = f.text_field :email, id: 'login_email'
+        = f.text_field :email, id: 'email'
     .control-group
-      %label.control-label{for: 'login_password'}
+      %label.control-label{for: 'password'}
         Passwort
       .controls
-        = f.password_field :password, id: 'login_password'
+        = f.password_field :password, id: 'password'
     .control-group
       .controls
         = f.submit 'Login', disable_with: 'Login', class: 'btn btn-primary'
   %p
     Du hast noch keinen Account? Dann kannst du dich hier
-    = link_to 'registrieren', root_path
+    = link_to 'registrieren.', root_path
