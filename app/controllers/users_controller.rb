@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :authenticate, only: [:edit, :update, :home, :destroy]
+  before_filter :authenticate, only: [:edit, :update, :home, :destroy, :contribute]
   before_filter :correct_user, only: [:edit, :update, :home, :destroy]
 
   def create
@@ -9,12 +9,16 @@ class UsersController < ApplicationController
       redirect_to current_user, :flash => { :success => 'Willkommen auf Collablearn!' }
     else
       @title = 'Gemeinsam online lernen'
-      render 'static_pages/home'
+      render 'pages/home'
     end
   end
 
   def home
     @title = 'Deine Startseite'
+  end
+
+  def contribute
+    @title = 'Mitwirken'
   end
 
   def show

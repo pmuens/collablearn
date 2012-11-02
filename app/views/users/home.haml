@@ -8,23 +8,23 @@
         Hallo
         = current_user.username
   .span4
-    .hero-unit.user-home
+    .hero-unit.with-button
       %p.buttonwrapper
         = link_to 'Lernen', '#', class: 'btn btn-primary btn-large'
       %p
         Neue Lernlisten erstellen oder bestehende Lernliste lernen.
   .span4  
-    .hero-unit.user-home
+    .hero-unit.with-button
       %p.buttonwrapper
         = link_to 'Suchen und Entdecken', '#', class: 'btn btn-primary btn-large'
       %p
         Neue Themenbereiche kennenlernen und Collablearn durchsuchen.
   .span4
-    .hero-unit.user-home
+    .hero-unit.with-button
       %p.buttonwrapper
-        = link_to 'Mitwirken', '#', class: 'btn btn-primary btn-large'
+        = link_to 'Mitwirken', contribute_path, class: 'btn btn-primary btn-large'
       %p
-        Neue Fragen erstellen. Anderen Nutzern helfen.
+        Neue Fragen erstellen. Collablearns Qualität verbessern.
   .span12
     .page-header
       %h1
