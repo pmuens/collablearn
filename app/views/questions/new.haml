@@ -7,7 +7,7 @@
           #{'/'}
       %li.active
         Neue Frage erstellen
-  .span6.offset3
+  .span5.offset3
     .page-header
       %h1
         Neue Frage erstellen
@@ -22,12 +22,17 @@
         %label.control-label{for: 'question'}
           Frage
         .controls
-          = f.text_area :question, id: 'question', rows: '7'
+          = f.text_area :question, id: 'question', rows: '6'
       .control-group
         %label.control-label{for: 'answer'}
           Antwort
         .controls
-          = f.text_area :answer, id: 'answer', rows: '7'
+          = f.text_area :answer, id: 'answer', rows: '6'
+      .control-group
+        %label.control-label{for: 'tag_list'}
+          Tags (mit , trennen)
+        .controls
+          = f.text_field :tag_list, id: 'tag_list'
       .control-group
         .controls
           = f.submit 'Frage erstellen', disable_with: 'Frage erstellen', class: 'btn btn-primary'
