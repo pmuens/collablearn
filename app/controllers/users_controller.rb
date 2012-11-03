@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :authenticate, only: [:edit, :update, :home, :destroy, :contribute]
+  before_filter :authenticate, only: [:edit, :update, :home, :destroy]
   before_filter :correct_user, only: [:edit, :update, :home, :destroy]
 
   def create
@@ -15,10 +15,6 @@ class UsersController < ApplicationController
 
   def home
     @title = 'Deine Startseite'
-  end
-
-  def contribute
-    @title = 'Mitwirken'
   end
 
   def show

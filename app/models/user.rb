@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_many :questions
+
   attr_accessible :email, :is_blocked, :is_validated, :password, :password_confirmation, :salt, :username, :terms_of_service
 
   #dependent destroy --> friendships, lists
@@ -7,8 +9,8 @@ class User < ActiveRecord::Base
   username_regex = /\A[A-Za-z\d\-\_\.\+]+\z/
 
   validates :email, presence: true, format: { with: email_regex }, uniqueness: { case_sensitive: false }
-  validates :password, presence: true, confirmation: true, length: { in: 6..40 }
-  validates :username, presence: true, format: { with: username_regex }, uniqueness: { case_sensitive: false }
+  validates :password, presence: true, confirmation: true, length: { in: 8..40 }
+  validates :username, presence: true, length: { in: 1..20 }, format: { with: username_regex }, uniqueness: { case_sensitive: false }
   validates_acceptance_of :terms_of_service
 
   before_save { |user| user.email = user.email.downcase }
