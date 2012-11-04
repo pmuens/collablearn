@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_user!, only: [:edit, :update, :destroy, :home]
-  #before_filter :correct_user, only: [:edit, :update, :destroy, :home]
+  before_filter :authenticate_user!, only: [:edit, :update, :home]
+  #before_filter :correct_user, only: [:edit, :update, :home]
 
   def home
     @title = 'Deine Startseite'
@@ -18,16 +18,6 @@ class UsersController < ApplicationController
   def edit
     @title = 'Einstellungen'
     @user = current_user
-  end
-
-  def destroy
-    sign_out
-    if User.find_by_id(params[:id]).destroy
-      flash[:success] = 'Dein Account wurde erfolgreich entfernt. Wir werden dich vermissen :-('
-    else
-      flash[:error] = 'Das Entfernen des Accounts ist leider fehlgeschlagen. Bitte versuche es erneut.'
-    end
-    redirect_to root_path
   end
 
   private
