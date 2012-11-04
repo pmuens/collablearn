@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_user!, only: [:edit, :update, :home]
-  #before_filter :correct_user, only: [:edit, :update, :home]
+  before_filter :authenticate_user!, only: [:edit, :update_password, :update, :home]
+  #before_filter :correct_user, only: [:edit, :update_password, :update, :home]
 
   def home
     @title = 'Deine Startseite'
@@ -18,6 +18,17 @@ class UsersController < ApplicationController
   def edit
     @title = 'Einstellungen'
     @user = current_user
+  end
+
+  def update_password
+    @user = User.find(current_user.id)
+    if @user.update_with_password(params[:user])
+      sign_in @user, bypass: true
+      redirect_to root_path, flash: { success: 'Passwort erfolgreich aktualisiert' }
+    else
+      @title = 'Einstellungen'
+      render 'edit'
+    end
   end
 
   private

@@ -7,18 +7,8 @@
         - else
           = @user.username
           ist auf Collablearn!
-      - if user_signed_in?
-        %p
-          = link_to @user.username + ' folgen', '#', class: 'btn btn-primary'
-      - else
-        %p
-          Hier
-          = link_to 'einloggen', new_user_session_path
-          oder einen kostenlosen
-          = link_to 'Account erstellen', root_path
-          um
-          = @user.username
-          zu folgen.
+      %p
+        = link_to @user.username + ' folgen', '#', class: 'btn btn-primary'
   .span6
     .page-header
       %h1

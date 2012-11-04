@@ -4,6 +4,7 @@ Collablearn::Application.routes.draw do
   resources :questions, except: [:show, :index]
   resources :users, only: [:show, :edit, :update]
 
+  match 'update_password', to: 'users#update_password'
   match '/home/:id', to: 'users#home'
   match '/terms_of_service', to: 'pages#terms_of_service'
   match '/masthead', to: 'pages#masthead'
