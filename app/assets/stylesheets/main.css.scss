@@ -9,6 +9,14 @@ ul.dropdown-menu {
     padding: 5px 20px;
     margin-bottom: 0;
   }
+  a.forgotten-password {
+    margin-top: 10px;
+    text-align: right;
+    color: #08C;
+    &:hover {
+      color: #005580;
+    }
+  }
 }
 
 .hero-unit.with-button {

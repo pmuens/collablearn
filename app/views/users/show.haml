@@ -2,18 +2,18 @@
   .span12
     .hero-unit
       %h1
-        - if logged_in?
+        - if user_signed_in?
           = @user.username + '\'s Seite'
-        -else
+        - else
           = @user.username
           ist auf Collablearn!
-      - if logged_in?
+      - if user_signed_in?
         %p
           = link_to @user.username + ' folgen', '#', class: 'btn btn-primary'
       - else
         %p
           Hier
-          = link_to 'einloggen', login_path
+          = link_to 'einloggen', new_user_session_path
           oder einen kostenlosen
           = link_to 'Account erstellen', root_path
           um

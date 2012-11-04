@@ -1,0 +1,15 @@
+.row
+  .span5.offset3
+    .page-header
+      %h1
+        Passwort vergessen
+    = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: 'form-horizontal' } ) do |f|
+      = devise_error_messages!
+      .control-group
+        %label.control-label{for: 'email'}
+          E-Mail
+        .controls
+          = f.email_field :email, id: 'email'
+      .control-group
+        .controls
+          = f.submit 'Passwort zurücksetzen', disable_with: 'Passwort zurücksetzen', class: 'btn btn-primary'

@@ -1,0 +1,15 @@
+.row  
+  .span5.offset3
+    .page-header
+      %h1
+        Entsperrinformationen erneut zusenden
+    = form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post, class: 'form-horizontal' } ) do |f|
+      = devise_error_messages!
+      .control-group
+        %label.control-label{for: 'email'}
+          E-Mail
+        .controls
+          = f.email_field :email, id: 'email'
+      .control-group
+        .controls
+          = f.submit 'Erneut zusenden', disable_with: 'Erneut zusenden', class: 'btn btn-primary'

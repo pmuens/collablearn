@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
-  def home
-    if logged_in?
+  def index
+    if user_signed_in?
       redirect_to current_user
     else
       @title = 'Gemeinsam online lernen'

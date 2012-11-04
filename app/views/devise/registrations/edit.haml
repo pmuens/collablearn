@@ -1,0 +1,33 @@
+.row
+  .span5.offset3
+    .page-header
+      %h1
+        Aktualisiere
+        = resource_name.to_s.humanize
+    = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'form-horizontal' } ) do |f|
+      = devise_error_messages!
+      .control-group
+        %label.control-label{for: 'email'}
+          E-Mail
+        .controls
+          = f.email_field :email, id: 'email'
+      .control-group
+        %label.control-label{for: 'password'}
+          Passwort
+        .controls
+          = f.password_field :password, id: 'password'
+      .control-group
+        %label.control-label{for: 'password_confirmation'}
+          Passwort wiederholen
+        .controls
+          = f.password_field :password_confirmation, id: 'password_confirmation'
+      .control-group
+        %label.control-label{for: 'current_password}
+          Aktuelles Passwort
+        .controls
+          = f.password_field :current_password, id: 'current_password'
+      .control-group
+        .controls
+          = f.submit 'Aktualisieren', disable_with: 'AKtualisieren', class: 'btn btn-primary'
+
+/<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %>.</p>

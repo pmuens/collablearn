@@ -1,0 +1,25 @@
+.row  
+  .span5.offset3
+    .page-header
+      %h1
+        Login
+    = form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'form-horizontal' } ) do |f|
+      .control-group
+        %label.control-label{for: 'email'}
+          E-Mail
+        .controls
+          = f.email_field :email, id: 'email'
+      .control-group
+        %label.control-label{for: 'password'}
+          Passwort
+        .controls
+          = f.password_field :password, id: 'password'
+      - if devise_mapping.rememberable?
+        .control-group
+          .controls
+            %label.checkbox
+              = f.check_box :remember_me
+              Eingeloggt bleiben
+      .control-group
+        .controls
+          = f.submit 'Login', disable_with: 'Login', class: 'btn btn-primary'

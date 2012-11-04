@@ -3,7 +3,7 @@
     .container
       = link_to 'Collablearn', :root, class: 'brand'
       %ul.nav.pull-right
-        - if logged_in?
+        - if user_signed_in?
           %li.dropdown
             %a(href='#' class='dropdown-toggle' data-toggle='dropdown')
               = current_user.email
@@ -12,21 +12,27 @@
               %li
                 = link_to raw('<i class="icon-wrench"></i> Einstellungen'), edit_user_path(current_user)
               %li
-                = link_to raw('<i class="icon-off"></i> Logout'), logout_path
+                = link_to raw('<i class="icon-off"></i> Logout'), destroy_user_session_path
         - else
           %li.dropdown
             %a(href='#' class='dropdown-toggle' data-toggle='dropdown')
               Login
               %b.caret
             %ul.dropdown-menu
-              = form_for(:session, url: sessions_path) do |f|
+              = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
                 %p
                   E-Mail
                 .controls
-                  = f.text_field :email
+                  = f.email_field :email
                 %p
                   Passwort
                 .controls
                   = f.password_field :password
+                - if devise_mapping.rememberable?
+                  .controls
+                    %label.checkbox
+                      = f.check_box :remember_me
+                      Eingeloggt bleiben
                 .controls
                   = f.submit 'Login', disable_with: 'Login', class: 'btn btn-primary'
+              = link_to 'Passwort vergessen?', new_user_password_path, class: 'forgotten-password'

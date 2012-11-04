@@ -1,24 +1,13 @@
 class UsersController < ApplicationController
-  before_filter :authenticate, only: [:edit, :update, :home, :destroy]
-  before_filter :correct_user, only: [:edit, :update, :home, :destroy]
-
-  def create
-    @user = User.new(params[:user])
-    if @user.save
-      log_in @user
-      redirect_to current_user, :flash => { :success => 'Willkommen auf Collablearn!' }
-    else
-      @title = 'Gemeinsam online lernen'
-      render 'pages/home'
-    end
-  end
+  before_filter :authenticate_user!, only: [:edit, :update, :destroy, :home]
+  #before_filter :correct_user, only: [:edit, :update, :destroy, :home]
 
   def home
     @title = 'Deine Startseite'
   end
 
   def show
-    if logged_in? && params[:id].to_i == current_user.id.to_i
+    if user_signed_in? && params[:id].to_i == current_user.id.to_i
       redirect_to action: 'home', id: current_user.id
     else
       @user = User.find_by_id(params[:id])
@@ -32,23 +21,13 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    log_out
+    sign_out
     if User.find_by_id(params[:id]).destroy
       flash[:success] = 'Dein Account wurde erfolgreich entfernt. Wir werden dich vermissen :-('
     else
       flash[:error] = 'Das Entfernen des Accounts ist leider fehlgeschlagen. Bitte versuche es erneut.'
     end
     redirect_to root_path
-  end
-
-  def update
-    @user = User.find(current_user)
-    if @user.update_attributes(params[:user])
-      redirect_to root_path, flash: { success: 'Passwort erfolgreich aktualisiert! Bitte mit neuem Passwort einloggen' }
-    else
-      @title = 'Einstellungen'
-      render 'edit'
-    end
   end
 
   private

@@ -1,14 +1,13 @@
 Collablearn::Application.routes.draw do
-  resources :sessions, only: [:new, :create, :destroy]
-  resources :users, except: [:new, :index]
-  resources :questions, except: [:show, :index]
+  devise_for :users
 
-  match '/home/:id', to: 'users#home', as: 'home'
-  match '/login', to: 'sessions#new'
-  match '/logout', to: 'sessions#destroy'
+  resources :questions, except: [:show, :index]
+  resources :users, only: [:show, :edit, :update, :destroy]
+
+  match '/home/:id', to: 'users#home'
   match '/terms_of_service', to: 'pages#terms_of_service'
   match '/masthead', to: 'pages#masthead'
   match '/contact', to: 'pages#contact'
 
-  root to: 'pages#home'
+  root to: 'pages#index'
 end

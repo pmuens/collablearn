@@ -26,13 +26,12 @@
     .page-header
       %h1
         Registrieren
-    = form_for(@user, html: { class: 'form-horizontal' } ) do |f|
-      = render 'shared/error_messages', object: @user
+    = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'form-horizontal' } ) do |f|
       .control-group
         %label.control-label{for: 'email'}
           E-Mail
         .controls
-          = f.text_field :email, id: 'email'
+          = f.email_field :email, id: 'email'
       .control-group
         %label.control-label{for: 'username'}
           Benutzername
@@ -59,4 +58,4 @@
           = f.submit 'Registrieren', disable_with: 'Registrieren', class: 'btn btn-primary'
     %p
       Du hast schon einen Account? Dann kannst du dich hier 
-      = link_to 'einloggen.', new_session_path
+      = link_to 'einloggen.', new_user_session_path
