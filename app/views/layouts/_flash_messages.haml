@@ -1,9 +1,9 @@
 - if flash[:success]
   .alert.alert-success#fadeout
     = flash[:success]
-- if flash[:error]
+- if flash[:alert]
   .alert.alert-error#fadeout
-    = flash[:error]
+    = flash[:alert]
 - if flash[:notice]
   .alert.alert-info#fadeout
     = flash[:notice]

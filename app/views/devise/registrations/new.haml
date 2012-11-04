@@ -34,3 +34,6 @@
       .control-group
         .controls
           = f.submit 'Registrieren', disable_with: 'Registrieren', class: 'btn btn-primary'
+    %p
+      Du hast schon einen Account? Dann kannst du dich hier 
+      = link_to 'einloggen.', new_user_session_path
