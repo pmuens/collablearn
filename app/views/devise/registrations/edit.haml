@@ -5,7 +5,7 @@
         Aktualisiere
         = resource_name.to_s.humanize
     = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'form-horizontal' } ) do |f|
-      = devise_error_messages!
+      = render 'shared/error_messages', object: resource
       .control-group
         %label.control-label{for: 'email'}
           E-Mail

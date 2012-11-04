@@ -6,8 +6,10 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :questions
-
+  
   attr_accessible :email, :username, :password, :password_confirmation, :terms_of_service, :remember_me
+
+  acts_as_tagger
 
   username_regex = /\A[A-Za-z\d\-\_\.\+]+\z/
 
