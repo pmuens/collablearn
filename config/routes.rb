@@ -1,8 +1,10 @@
 Collablearn::Application.routes.draw do
   devise_for :users
 
-  resources :questions, except: [:show, :index]
-  resources :users, only: [:show, :edit, :update]
+  resources :users
+  resources :collections do
+    resources :questions
+  end
 
   match 'update_password', to: 'users#update_password'
   match '/home/:id', to: 'users#home'

@@ -1,0 +1,37 @@
+.row
+  .span12
+    %ul.breadcrumb
+      %li
+        = link_to 'Home', user_path(current_user)
+        %span.divider
+          #{'/'}
+      %li
+        = link_to 'Lernlisten verwalten', collections_path
+        %span.divider
+          #{'/'}
+      %li.active
+        Neue Lernliste erstellen
+    .page-header
+      %h1
+        Neue Lernliste erstellen
+  .span5.offset3
+    = form_for(@collection, html: { class: 'form-horizontal' } ) do |f|
+      = render 'shared/error_messages', object: @collection
+      .control-group
+        %label.control-label{for: 'name'}
+          Name
+        .controls
+          = f.text_field :name, id: 'name'
+      .control-group
+        %label.control-label{for: 'description'}
+          Beschreibung
+        .controls
+          = f.text_area :description, id: 'description', rows: '6'
+      .control-group
+        %label.control-label{for: 'tag_list'}
+          Tags (mit, trennen)
+        .controls
+          = f.text_field :tag_list, id: 'tag_list'
+      .control-group
+        .controls
+          = f.submit 'Lernliste erstellen', disable_with: 'Lernliste erstellen', class: 'btn btn-primary'

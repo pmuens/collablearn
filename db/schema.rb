@@ -11,17 +11,29 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121103215041) do
+ActiveRecord::Schema.define(:version => 20121108193109) do
+
+  create_table "collections", :force => true do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.text     "description"
+  end
+
+  add_index "collections", ["user_id"], :name => "index_collections_on_user_id"
 
   create_table "questions", :force => true do |t|
     t.string   "title"
     t.text     "question"
     t.text     "answer"
     t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "collection_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
+  add_index "questions", ["collection_id"], :name => "index_questions_on_collection_id"
   add_index "questions", ["user_id"], :name => "index_questions_on_user_id"
 
   create_table "taggings", :force => true do |t|

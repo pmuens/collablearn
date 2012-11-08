@@ -5,9 +5,11 @@ one:
   question: MyText
   answer: MyText
   user: 
+  collection: 
 
 two:
   title: MyString
   question: MyText
   answer: MyText
   user: 
+  collection: 

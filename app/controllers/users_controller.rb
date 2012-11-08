@@ -1,3 +1,5 @@
+#!/bin/env ruby
+# encoding: utf-8
 class UsersController < ApplicationController
   before_filter :authenticate_user!, only: [:edit, :update_password, :update, :home]
   #before_filter :correct_user, only: [:edit, :update_password, :update, :home]
