@@ -1,6 +1,6 @@
 .row
-  - if user_signed_in?
-    .span12
+  .span12
+    - if user_signed_in? && @collection = current_user.collections.find_by_id(@collection)
       %ul.breadcrumb
         %li
           = link_to 'Home', user_path(current_user)
@@ -12,9 +12,9 @@
             #{'/'}
         %li.active
           = @collection.name
-      .page-header
-        %h1
-          = @collection.name
+    .page-header
+      %h1
+        = @collection.name
   .span12
     - if @questions.any?
       %table.table.table-bordered.table-striped

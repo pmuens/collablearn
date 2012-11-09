@@ -6,7 +6,8 @@ class CollectionsController < ApplicationController
 
   def index
     @title = 'Lernlisten verwalten'
-    @collections = current_user.collections.all
+    @own_collections = current_user.collections.all
+    @followed_collections = current_user.collections.all
   end
 
   def new

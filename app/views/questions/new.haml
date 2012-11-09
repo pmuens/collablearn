@@ -37,11 +37,6 @@
         .controls
           = f.text_area :answer, id: 'answer', rows: '6'
       .control-group
-        %label.control-label{for: 'tag_list'}
-          Tags (mit , trennen)
-        .controls
-          = f.text_field :tag_list, id: 'tag_list'
-      .control-group
         .controls
           = link_to 'Fertig', collection_path(@collection), class: 'btn'
           = f.submit 'Frage erstellen', disable_with: 'Frage erstellen', class: 'btn btn-primary pull-right'

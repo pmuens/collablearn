@@ -8,6 +8,11 @@ class UsersController < ApplicationController
     @title = 'Deine Startseite'
   end
 
+  def settings
+    @title = 'Einstellungen'
+    @user = current_user
+  end
+
   def show
     if user_signed_in? && params[:id].to_i == current_user.id.to_i
       redirect_to action: 'home', id: current_user.id
@@ -15,11 +20,6 @@ class UsersController < ApplicationController
       @user = User.find_by_id(params[:id])
       @title = @user.username + '\'s Seite'
     end
-  end
-
-  def edit
-    @title = 'Einstellungen'
-    @user = current_user
   end
 
   def update_password

@@ -1,0 +1,109 @@
+.row
+  .span12
+    - if user_signed_in?
+      %ul.breadcrumb
+        %li
+          = link_to 'Home', user_path(current_user)
+          %span.divider
+            #{'/'}
+        %li.active
+          Suchen und Entdecken
+    .page-header
+      %h1
+        Suchen und Entdecken
+    .tabbable
+      %ul.nav.nav-tabs
+        %li.active
+          %a(href='#search' data-toggle='tab')
+            Suchen
+        %li
+          %a(href='#random_collections' data-toggle='tab')
+            Zufällige Lernlisten
+    .tab-content
+      .tab-pane.active#search
+        .span8.offset2
+          = form_tag('/search', method: :get) do
+            - # TODO: Improve preselected values for option
+            - selected_condition = 'collections_by_name'
+            - selected_condition = 'users_by_username' if params[:condition] == 'users_by_username'
+            = select_tag :condition, options_for_select({'Lernlisten nach Namen' => 'collections_by_name', 'Nutzer nach Nutzernamen' => 'users_by_username'}, selected: selected_condition)
+            %span.input-append
+              = text_field_tag :q, params[:q], class: 'search', id: 'appendInputButton'
+              = submit_tag 'Suchen', name: nil, class: 'btn btn-primary'
+        - if @result
+          %h2
+            Suchergebnisse für
+            = '\'' + params[:q] + '\''
+          - if @result.any?
+            - if @result.first.is_a?(Collection)
+              %table.table.table-bordered.table-striped
+                %thead
+                  %tr
+                    %th
+                      Name
+                    %th
+                      Beschreibung
+                    %th
+                      Fragen in dieser Lernliste
+                    %th
+                      Autor
+                %tbody
+                  - @result.each do |item|
+                    %tr
+                      %td
+                        = link_to item.name, collection_path(item)
+                      %td
+                        = item.description
+                      %td
+                        = item.questions.count
+                      %td
+                        = link_to item.user.username, user_path(item.user)
+            - elsif @result.first.is_a?(User)
+              %table.table.table-bordered.table-striped
+                %thead
+                  %tr
+                    %th
+                      Username
+                    %th
+                      Erstellte Lernlisten
+                    %th
+                      Erstellte Frage
+                %tbody
+                  - @result.each do |item|
+                    %tr
+                      %td
+                        = link_to item.username, user_path(item)
+                      %td
+                        = item.collections.count
+                      %td
+                        = item.questions.count
+          - else
+            %p
+              Für diese Suche wurden leider keine Treffer gefunden.
+      .tab-pane#random_collections
+        - if @random_collections.any?
+          %table.table.table-bordered.table-striped
+            %thead
+              %tr
+                %th
+                  Name
+                %th
+                  Beschreibung
+                %th
+                  Fragen in dieser Lernliste
+                %th
+                  Autor
+            %tbody
+              - @random_collections.each do |item|
+                %tr
+                  %td
+                    = link_to item.name, collection_path(item)
+                  %td
+                    = item.description
+                  %td
+                    = item.questions.count
+                  %td
+                    = link_to item.user.username, user_path(item.user)
+        - else
+          %p
+            Leider liegen derzeit keine zufälligen Lernlisten vor.

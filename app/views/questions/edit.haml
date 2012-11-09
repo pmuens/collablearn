@@ -37,10 +37,5 @@
         .controls
           = f.text_area :answer, id: 'answer', rows: '6'
       .control-group
-        %label.control-label{for: 'tag_list'}
-          Tags (mit , trennen)
-        .controls
-          = f.text_field :tag_list, id: 'tag_list'
-      .control-group
         .controls
           = f.submit 'Änderungen speichern', disable_with: 'Änderungen speichern', class: 'btn btn-primary'
