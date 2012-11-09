@@ -1,6 +1,6 @@
 .row
-  .span12
-    - if user_signed_in? && @collection = current_user.collections.find_by_id(@collection)
+  - if user_signed_in? && @collection == current_user.collections.find_by_id(@collection)
+    .span12
       %ul.breadcrumb
         %li
           = link_to 'Home', user_path(current_user)
@@ -12,55 +12,103 @@
             #{'/'}
         %li.active
           = @collection.name
-    .page-header
-      %h1
-        = @collection.name
-  .span12
-    - if @questions.any?
-      %table.table.table-bordered.table-striped
-        %thead
-          %tr
-            %th
-              Titel
-            %th
-              Frage
-            %th
-              Antwort
-            %th
-              Autor
-            %th(colspan='2')
-        %tbody
-          - @questions.each do |item|
-            .modal.hide.fade{id: "delete_question_modal_#{item.id}"}
-              .modal-header
-                %button.close(type='button' data-dismiss='modal')
-                %h3
-                  Frage löschen?
-              .modal-body
-                %p
-                  Möchtest du die Frage
-                  = '\'' + item.title + '\''
-                  löschen?
-                %p
-                  Dieser Schritt kann nicht rückgängig gemacht werden.
-              .modal-footer
-                %a.btn(href='#' data-dismiss='modal')
-                  Abbrechen
-                = link_to 'Frage löschen', collection_question_path(@collection, item), method: :delete, class: 'btn btn-danger'
+      .page-header
+        %h1
+          = @collection.name
+      - if @questions.any?
+        %table.table.table-bordered.table-striped
+          %thead
             %tr
-              %td
-                = item.title
-              %td
-                = item.question
-              %td
-                = item.answer
-              %td
-                = link_to item.user.username, user_path(item.user)
-              %td
-                = link_to raw('<i class="icon-edit"></i>'), edit_collection_question_path(@collection, item)
-              %td
-                = link_to raw('<i class="icon-trash"></i>'), "#delete_question_modal_#{item.id}", data: { toggle: 'modal' }
-    - else
-      %p
-        Aktuell sind in dieser Lernliste noch keine Fragen eingetragen. Klicke auf den Button "Fragen hinzufügen" um eine neue Frage hinzuzufügen
-    = link_to 'Frage hinzufügen', new_collection_question_path(@collection), class: 'btn btn-primary'
+              %th
+                Titel
+              %th
+                Frage
+              %th
+                Antwort
+              %th
+                Autor
+              %th(colspan='2')
+          %tbody
+            - @questions.each do |item|
+              .modal.hide.fade{id: "delete_question_modal_#{item.id}"}
+                .modal-header
+                  %button.close(type='button' data-dismiss='modal')
+                  %h3
+                    Frage löschen?
+                .modal-body
+                  %p
+                    Möchtest du die Frage
+                    = '\'' + item.title + '\''
+                    löschen?
+                  %p
+                    Dieser Schritt kann nicht rückgängig gemacht werden.
+                .modal-footer
+                  %a.btn(href='#' data-dismiss='modal')
+                    Abbrechen
+                  = link_to 'Frage löschen', collection_question_path(@collection, item), method: :delete, class: 'btn btn-danger'
+              %tr
+                %td
+                  = item.title
+                %td
+                  = item.question
+                %td
+                  = item.answer
+                %td
+                  = link_to item.user.username, user_path(item.user)
+                %td
+                  = link_to raw('<i class="icon-edit"></i>'), edit_collection_question_path(@collection, item)
+                %td
+                  = link_to raw('<i class="icon-trash"></i>'), "#delete_question_modal_#{item.id}", data: { toggle: 'modal' }
+      - else
+        %p
+          Aktuell sind in dieser Lernliste noch keine Fragen eingetragen. Klicke auf den Button "Frage hinzufügen" um eine neue Frage hinzuzufügen
+      = link_to 'Frage hinzufügen', new_collection_question_path(@collection), class: 'btn btn-primary'
+  - else
+    .span12
+      - if user_signed_in?
+        %ul.breadcrumb
+          %li
+            = link_to 'Home', user_path(current_user)
+            %span.divider
+              #{'/'}
+          %li.active
+            = @collection.name
+      .hero-unit
+        %h1
+          = @collection.name
+        %p
+          - if user_signed_in? && current_user.following?(@collection)
+            = link_to 'Lernliste nicht mehr folgen', unfollow_collection_path(@collection), class: 'btn btn-danger'
+          - else
+            = link_to 'Lernliste folgen', follow_collection_path(@collection), class: 'btn btn-primary'
+    .span12
+      .page-header
+        %h1
+          Fragen in dieser Lernliste
+      - if @questions.any?
+        %table.table.table-bordered.table-striped
+          %thead
+            %tr
+              %th
+                Titel
+              %th
+                Frage
+              %th
+                Antwort
+              %th
+                Autor
+          %tbody
+            - @questions.each do |item|
+              %tr
+                %td
+                  = item.title
+                %td
+                  = item.question
+                %td
+                  = item.answer
+                %td
+                  = link_to item.user.username, user_path(item.user)
+      - else
+        %p
+          Aktuell sind in dieser Lernliste noch keine Fragen eingetragen. Klicke auf den Button "Frage hinzufügen" um eine neue Frage hinzuzufügen
+      = link_to 'Frage hinzufügen', new_collection_question_path(@collection), class: 'btn btn-primary'

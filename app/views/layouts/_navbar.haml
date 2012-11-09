@@ -3,8 +3,6 @@
     .container
       = link_to 'Collablearn', :root, class: 'brand'
       %ul.nav.pull-right
-        %li
-          = link_to '?', '#'
         - if user_signed_in?
           %li.dropdown
             %a(href='#' class='dropdown-toggle' data-toggle='dropdown')
@@ -12,7 +10,7 @@
               %b.caret
             %ul.dropdown-menu
               %li
-                = link_to raw('<i class="icon-wrench"></i> Einstellungen'), settings_path(current_user.id)
+                = link_to raw('<i class="icon-wrench"></i> Einstellungen'), settings_path(current_user)
               %li
                 = link_to raw('<i class="icon-off"></i> Logout'), destroy_user_session_path
         - else

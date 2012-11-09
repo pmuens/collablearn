@@ -8,19 +8,19 @@
         Hallo
         = current_user.username
   .span4
-    .hero-unit.with-button
+    .hero-unit.left-floated-text
       %p.buttonwrapper
         = link_to 'Lernen', '#', class: 'btn btn-primary btn-large'
       %p
         Lernliste auswählen, um die Lernliste online zu lernen.
   .span4
-    .hero-unit.with-button
+    .hero-unit.left-floated-text
       %p.buttonwrapper
         = link_to 'Lernlisten verwalten', collections_path, class: 'btn btn-primary btn-large'
       %p
         Fragen zu Lernlisten hinzufügen. Lernlisten verwalten.
   .span4  
-    .hero-unit.with-button
+    .hero-unit.left-floated-text
       %p.buttonwrapper
         = link_to 'Suchen und Entdecken', search_path, class: 'btn btn-primary btn-large'
       %p
@@ -28,6 +28,24 @@
   .span12
     .page-header
       %h1
-        Aktivitäten
-    %p
-      Derzeit liegen leider keine Aktivitäten deiner gefolgten Personen vor...
+        Infos
+  .span6
+    .hero-unit.left-floated-text
+      %p
+        Du hast
+        = link_to current_user.collections.count, collections_path
+        Lernliste(n) erstellt.
+      %p
+        Du folgst
+        = link_to current_user.following_collections.count, collections_path
+        Lernliste(n).
+  .span6  
+    .hero-unit.left-floated-text
+      %p
+        Du folgst
+        = link_to current_user.following_users.count, fellowships_users_path(current_user)
+        anderen Nutzern.
+      %p
+        Dir folgen
+        = link_to current_user.count_user_followers, fellowships_users_path(current_user)
+        andere Nutzer.

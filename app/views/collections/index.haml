@@ -10,7 +10,7 @@
     .page-header
       %h1
         Lernlisten verwalten
-  .span12
+  .span6
     %h2
       Eigene Lernlisten
     - if @own_collections.any?
@@ -22,7 +22,7 @@
             %th
               Beschreibung
             %th
-              Fragen in dieser Lernliste
+              Fragen
             %th(colspan='2')
         %tbody
           - @own_collections.each do |item|
@@ -56,8 +56,9 @@
     - else
       %p
         Du hast aktuell keine eigenen Lernlisten angelegt. Klicke auf den Button "Neue Lernliste erstellen" um eine neue Lernliste zu erstellen
+  .span6  
     %h2
-      Gefolgten Lernlisten
+      Lernlisten, denen du folgst
     - if @followed_collections.any?
       %table.table.table-bordered.table-striped
         %thead
@@ -67,7 +68,7 @@
             %th
               Beschreibung
             %th
-              Fragen in dieser Lernliste
+              Fragen
         %tbody
           - @followed_collections.each do |item|
             %tr
@@ -79,7 +80,7 @@
                 = item.questions.count
     - else
       %p
-        Du folgst derzeit keinen anderen Lernlisten. Suche und entdecke Lernlisten anderer Nutzer mit der
-        = link_to 'Suchen und Entdecken', '#'
-        Funktion
+        Du folgst derzeit keinen anderen Lernlisten. Suche und entdecke Lernlisten anderer Nutzer mit der Funktion
+        = link_to 'Suchen und Entdecken.', search_path
+  .span12
     = link_to 'Neue Lernliste erstellen', new_collection_path, class: 'btn btn-primary'

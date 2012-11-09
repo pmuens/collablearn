@@ -7,7 +7,7 @@ class CollectionsController < ApplicationController
   def index
     @title = 'Lernlisten verwalten'
     @own_collections = current_user.collections.all
-    @followed_collections = current_user.collections.all
+    @followed_collections = current_user.following_collections
   end
 
   def new
@@ -18,7 +18,7 @@ class CollectionsController < ApplicationController
   def create
     @collection = current_user.collections.new(params[:collection])
     if @collection.save
-      redirect_to collection_path(@collection), flash: { success: 'Lernliste \'' + @collection.name + '\' erfolgreich erstellt' }
+      redirect_to collection_path(@collection), flash: { success: 'Lernliste \'' + @collection.name + '\' erfolgreich erstellt.' }
     else
       @title = 'Neue Lernliste erstellen'
       render 'new'
@@ -39,7 +39,7 @@ class CollectionsController < ApplicationController
   def update
     @collection = Collection.find_by_id(params[:id])
     if @collection.update_attributes(params[:collection])
-      redirect_to collections_path, flash: { success: 'Lernliste \'' + @collection.name + '\' erfolgreich editiert' }
+      redirect_to collections_path, flash: { success: 'Lernliste \'' + @collection.name + '\' erfolgreich editiert.' }
     else
       @title = 'Lernliste editieren'
       render 'edit'
@@ -48,7 +48,7 @@ class CollectionsController < ApplicationController
 
   def destroy
     Collection.find_by_id(params[:id]).destroy
-    redirect_to collections_path, flash: { success: 'Lernliste erfolgreich gelöscht' }
+    redirect_to collections_path, flash: { success: 'Lernliste erfolgreich gelöscht.' }
   end
 
   #private

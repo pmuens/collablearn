@@ -1,0 +1,30 @@
+.row
+  .span12
+    %ul.breadcrumb
+      %li
+        = link_to 'Home', user_path(current_user)
+        %span.divider
+          #{'/'}
+      %li.active
+        Übersicht Nutzer folgen
+    .page-header
+      %h1
+        Übersicht Nutzer folgen
+  .span6
+    %h2
+      Du folgst
+    - if @your_followings.any?
+      - @your_followings.each do |item|
+        = link_to item.username, user_path(item)
+    - else
+      %p
+        Du folgst derzeit keinem anderen Benutzer.
+  .span6
+    %h2
+      Dir folgen
+    - if @your_followers.any?
+      - @your_followers.each do |item|
+        = link_to item.username, user_path(item)
+    - else
+      %p
+        Dir folgen derzeit keine anderen Nutzer.

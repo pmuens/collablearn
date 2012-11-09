@@ -15,7 +15,7 @@ class QuestionsController < ApplicationController
     # TODO: Fix the current_user-issue (better solution than an appending to the array?)
     @question = @collection.questions.new(params[:question].merge(user_id: current_user.id))
     if @question.save
-      redirect_to new_collection_question_path(@collection), flash: { success: 'Frage \'' + @question.title + '\' erfolgreich erstellt' }
+      redirect_to new_collection_question_path(@collection), flash: { success: 'Frage \'' + @question.title + '\' erfolgreich erstellt.' }
     else
       @title = 'Neue Frage erstellen'
       render 'new'
@@ -24,7 +24,7 @@ class QuestionsController < ApplicationController
 
   def destroy
     Question.find_by_id(params[:id]).destroy
-    redirect_to collection_path(params[:collection_id]), flash: { success: 'Frage erfolgreich gelöscht' }
+    redirect_to collection_path(params[:collection_id]), flash: { success: 'Frage erfolgreich gelöscht.' }
   end
 
   def edit
@@ -37,7 +37,7 @@ class QuestionsController < ApplicationController
     @collection = Collection.find_by_id(params[:collection_id])
     @question = @collection.questions.find_by_id(params[:id])
     if @question.update_attributes(params[:question])
-      redirect_to collection_path(@collection), flash: { success: 'Frage \'' + @question.title + '\' erfolgreich editiert' }
+      redirect_to collection_path(@collection), flash: { success: 'Frage \'' + @question.title + '\' erfolgreich editiert.' }
     else
       @title = 'Frage editieren'
       render 'edit'

@@ -5,10 +5,11 @@
         = link_to 'Home', user_path(current_user)
         %span.divider
           #{'/'}
-      %li
-        = link_to 'Lernlisten verwalten', collections_path
-        %span.divider
-          #{'/'}
+      - if @collection == current_user.collections.find_by_id(@collection) || current_user.following?(@collection)
+        %li
+          = link_to 'Lernlisten verwalten', collections_path
+          %span.divider
+            #{'/'}
       %li
         = link_to @collection.name, collection_path(@collection)
         %span.divider

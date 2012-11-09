@@ -1,15 +1,76 @@
 .row
+  - if user_signed_in?
+    .span12
+      %ul.breadcrumb
+        %li
+          = link_to 'Home', user_path(current_user)
+          %span.divider
+            #{'/'}
+        %li.active
+          = @user.username
   .span12
     .hero-unit
       %h1
-        - if user_signed_in?
-          = @user.username + '\'s Seite'
-        - else
-          = @user.username
-          ist auf Collablearn!
+        = @user.username
+        ist auf Collablearn!
       %p
-        = link_to @user.username + ' folgen', '#', class: 'btn btn-primary'
-  .span12
-    .page-header
-      %h1
-        = @user.username + '\'s Lernlisten'
+        - if user_signed_in? && current_user.following?(@user)
+          = link_to @user.username + ' nicht mehr folgen', unfollow_user_path(@user), class: 'btn btn-danger'
+        - else
+          = link_to @user.username + ' folgen', follow_user_path(@user), class: 'btn btn-primary'
+  .span6
+    %h2
+      = 'Erstellte Lernlisten'
+    - if @own_collections.any?
+      %table.table.table-bordered.table-striped
+        %thead
+          %tr
+            %th
+              Name
+            %th
+              Beschreibung
+            %th
+              Fragen
+        %tbody
+          - @own_collections.each do |item|
+            %tr
+              %td
+                = link_to item.name, collection_path(item)
+              %td
+                = item.description
+              %td
+                = item.questions.count
+    - else
+      %p
+      = @user.username
+      hat bisher keine eigenen Lernliste angelegt.
+  .span6
+    %h2
+      = 'Gefolgte Lernlisten'
+    - if @followed_collections.any?
+      %table.table.table-bordered.table-striped
+        %thead
+          %tr
+            %th
+              Name
+            %th
+              Beschreibung
+            %th
+              Fragen
+            %th
+              Autor
+        %tbody
+          - @followed_collections.each do |item|
+            %tr
+              %td
+                = link_to item.name, collection_path(item)
+              %td
+                = item.description
+              %td
+                = item.questions.count
+              %td
+                = link_to item.user.username, user_path(item.user)
+    - else
+      %p
+      = @user.username
+      folgt bisher keinen anderen Lernlisten.
