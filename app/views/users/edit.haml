@@ -1,0 +1,33 @@
+.row
+  .span12
+    %ul.breadcrumb
+      %li
+        = link_to 'Home', user_path(current_user)
+        %span.divider
+          #{'/'}
+      %li.active
+        Profil aktulisieren
+  .span5.offset3
+    .page-header
+      %h1
+        Profil aktualisieren
+    = form_for(@user, html: { class: 'form-horizontal' } ) do |f|
+      = render 'shared/error_messages', object: @user
+      .control-group
+        %label.control-label{for: 'name'}
+          Name
+        .controls
+          = f.text_field :name, id: 'name'
+      .control-group
+        %label.control-label{for: 'bio'}
+          Kurzbiografie
+        .controls
+          = f.text_area :bio, id: 'bio', rows: '6'
+      .control-group
+        %label.control-label{for: 'interest_list'}
+          Interessen (mit , trennen)
+        .controls
+          = f.text_field :interest_list, id: 'interest_list'
+      .control-group
+        .controls
+          = f.submit 'Profil aktualisieren', disable_with: 'Profil aktualisieren', class: 'btn btn-primary'

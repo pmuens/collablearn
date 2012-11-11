@@ -1,0 +1,18 @@
+%table.table.table-bordered.table-striped
+  %thead
+    %tr
+      %th
+        Username
+      %th
+        Erstellte Lernlisten
+      %th
+        Erstellte Fragen
+  %tbody
+    - users.each do |item|
+      %tr
+        %td
+          = link_to item.username, user_path(item)
+        %td
+          = item.collections.count
+        %td
+          = item.questions.count

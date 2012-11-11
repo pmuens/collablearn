@@ -13,6 +13,11 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
+  def learncenter
+    @title = 'Lerncenter'
+    @collections = current_user.collections + current_user.following_collections
+  end
+
   def show
     if user_signed_in? && params[:id].to_i == current_user.id.to_i
       redirect_to action: 'home', id: current_user.id
@@ -21,6 +26,21 @@ class UsersController < ApplicationController
       @own_collections = @user.collections
       @followed_collections = @user.following_collections
       @title = @user.username + '\'s Seite'
+    end
+  end
+
+  def edit
+    @title = 'Profil aktualisieren'
+    @user = current_user
+  end
+
+  def update
+    @user = current_user
+    if @user.update_attributes(params[:user])
+      redirect_to root_path, flash: { success: 'Profil erfolgreich aktualisiert.' }
+    else
+      @title = 'Profil aktualisieren'
+      render 'edit'
     end
   end
 
@@ -43,8 +63,12 @@ class UsersController < ApplicationController
 
   def follow_user
     @followed_user = User.find_by_id(params[:id])
-    if !current_user.follow(@followed_user)
-      flash[:alert] = 'Folgen leider nicht erfolgreich :-( Versuche es erneut.'
+    if current_user == @followed_user
+      flash[:alert] = 'Du kannst dir nicht selber folgen.'
+    else  
+      if !current_user.follow(@followed_user)
+        flash[:alert] = 'Folgen leider nicht erfolgreich :-( Versuche es erneut.'
+      end
     end
     redirect_to :back
   end
@@ -59,8 +83,12 @@ class UsersController < ApplicationController
 
   def follow_collection
     @followed_collection = Collection.find_by_id(params[:id])
-    if !current_user.follow(@followed_collection)
-      flash[:alert] = 'Folgen leider nicht erfolgreich :-( Versuche es erneut'
+    if current_user.collections.find_by_id(params[:id]) == @followed_collection
+      flash[:alert] = 'Du kannst deiner eigenen Lernliste nicht folgen.'
+    else
+      if !current_user.follow(@followed_collection)
+        flash[:alert] = 'Folgen leider nicht erfolgreich :-( Versuche es erneut'
+      end
     end
     redirect_to :back
   end

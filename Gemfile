@@ -16,6 +16,7 @@ group :assets do
   gem 'coffee-rails', '3.2.2'
   gem 'uglifier', '1.3.0'
   gem 'bootstrap-sass', '2.1.1.0'
+  #gem 'font-awesome-sass-rails', '2.0.0.0'
 end
 
 gem 'jquery-rails', '2.1.3'

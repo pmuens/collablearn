@@ -12,7 +12,10 @@
     .hero-unit
       %h1
         = @user.username
-        ist auf Collablearn!
+        - if @user.name
+          = '(' + @user.name + ')'
+      %p
+        = @user.bio
       %p
         - if user_signed_in? && current_user.following?(@user)
           = link_to @user.username + ' nicht mehr folgen', unfollow_user_path(@user), class: 'btn btn-danger'
@@ -22,24 +25,7 @@
     %h2
       = 'Erstellte Lernlisten'
     - if @own_collections.any?
-      %table.table.table-bordered.table-striped
-        %thead
-          %tr
-            %th
-              Name
-            %th
-              Beschreibung
-            %th
-              Fragen
-        %tbody
-          - @own_collections.each do |item|
-            %tr
-              %td
-                = link_to item.name, collection_path(item)
-              %td
-                = item.description
-              %td
-                = item.questions.count
+      = render 'shared/collections_table', collections: @own_collections, editable: false
     - else
       %p
       = @user.username
@@ -48,28 +34,7 @@
     %h2
       = 'Gefolgte Lernlisten'
     - if @followed_collections.any?
-      %table.table.table-bordered.table-striped
-        %thead
-          %tr
-            %th
-              Name
-            %th
-              Beschreibung
-            %th
-              Fragen
-            %th
-              Autor
-        %tbody
-          - @followed_collections.each do |item|
-            %tr
-              %td
-                = link_to item.name, collection_path(item)
-              %td
-                = item.description
-              %td
-                = item.questions.count
-              %td
-                = link_to item.user.username, user_path(item.user)
+      = render 'shared/collections_table', collections: @followed_collections, editable: false
     - else
       %p
       = @user.username

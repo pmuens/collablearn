@@ -1,0 +1,26 @@
+.row
+  .span12
+    - if user_signed_in?
+      %ul.breadcrumb
+        %li
+          = link_to 'Home', user_path(current_user)
+          %span.divider
+            #{'/'}
+        %li
+          = link_to 'Lerncenter', learncenter_path
+          %span.divider
+            #{'/'}
+        %li.active
+          = @collection.name
+          lernen
+    .page-header
+      %h1
+        = '\'' + @collection.name + '\''
+        lernen
+  .span4.offset4
+    .well
+      Frage
+    .well
+      Antwort
+    .btn.btn-large
+      <i class="icon-random"></i>

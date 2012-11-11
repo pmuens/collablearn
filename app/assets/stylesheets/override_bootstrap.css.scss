@@ -20,6 +20,10 @@ input[type="text"], input[type="password"], input[type="email"] {
   box-sizing: border-box;
 }
 
+select {
+  width: 100%;
+}
+
 textarea {
   width: 100%;
   -webkit-box-sizing: border-box;

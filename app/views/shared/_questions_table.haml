@@ -1,0 +1,46 @@
+%table.table.table-bordered.table-striped
+  %thead
+    %tr
+      %th
+        Titel
+      %th
+        Frage
+      %th
+        Antwort
+      %th
+        Autor
+      - if editable
+        %th(colspan='2')
+  %tbody
+    - questions.each do |item|
+      - if editable
+        .modal.hide.fade{id: "delete_question_modal_#{item.id}"}
+          .modal-header
+            %button.close(type='button' data-dismiss='modal')
+            %h3
+            Frage löschen?
+          .modal-body
+            %p
+              Möchtest du die Frage
+              = '\'' + item.title + '\''
+              löschen?
+            %p
+              Dieser Schritt kann nicht rückgängig gemacht werden.
+          .modal-footer
+            %a.btn(href='#' data-dismiss='modal')
+              Abbrechen
+            = link_to 'Frage löschen', collection_question_path(collection, item), method: :delete, class: 'btn btn-danger'
+      %tr
+        %td
+          = item.title
+        %td
+          = item.question
+        %td
+          = item.answer
+        %td
+          = link_to item.user.username, user_path(item.user)
+        - if editable
+          %td
+            = link_to raw('<i class="icon-edit"></i>'), edit_collection_question_path(collection, item)
+          %td
+            = link_to raw('<i class="icon-trash"></i>'), "#delete_question_modal_#{item.id}", data: { toggle: 'modal' }

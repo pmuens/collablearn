@@ -17,6 +17,12 @@
           %a(href='#search' data-toggle='tab')
             Suchen
         %li
+          %a(href='#tagcloud_users' data-toggle='tab')
+            Nutzerinteressen
+        %li
+          %a(href='#tagcloud_collections' data-toggle='tab')
+            Tags in Lernlisten
+        %li
           %a(href='#random_collections' data-toggle='tab')
             Zufällige Lernlisten
     .tab-content
@@ -26,9 +32,11 @@
             - # TODO: Improve preselected values for option
             - selected_condition = 'collections_by_name'
             - selected_condition = 'users_by_username' if params[:condition] == 'users_by_username'
-            = select_tag :condition, options_for_select({'Lernlisten nach Namen' => 'collections_by_name', 'Nutzer nach Nutzernamen' => 'users_by_username'}, selected: selected_condition)
+            - selected_condition = 'collections_by_tags' if params[:condition] == 'collections_by_tags'
+            - selected_condition = 'users_by_interests' if params[:condition] == 'users_by_interests'
+            = select_tag :condition, options_for_select({'Lernlisten nach Namen' => 'collections_by_name', 'Lernlisten nach Tags (mit , trennen)' => 'collections_by_tags', 'Nutzer nach Nutzernamen' => 'users_by_username', 'Nutzer nach Interessen (mit , trennen)' => 'users_by_interests'}, selected: selected_condition), class: 'condition'
             %span.input-append
-              = text_field_tag :q, params[:q], class: 'search', id: 'appendInputButton'
+              = text_field_tag :q, params[:q], id: 'appendInputButton', class: 'search'
               = submit_tag 'Suchen', name: nil, class: 'btn btn-primary'
         - if @result
           %h2
@@ -36,74 +44,21 @@
             = '\'' + params[:q] + '\''
           - if @result.any?
             - if @result.first.is_a?(Collection)
-              %table.table.table-bordered.table-striped
-                %thead
-                  %tr
-                    %th
-                      Name
-                    %th
-                      Beschreibung
-                    %th
-                      Fragen
-                    %th
-                      Autor
-                %tbody
-                  - @result.each do |item|
-                    %tr
-                      %td
-                        = link_to item.name, collection_path(item)
-                      %td
-                        = item.description
-                      %td
-                        = item.questions.count
-                      %td
-                        = link_to item.user.username, user_path(item.user)
+              = render 'shared/collections_table', collections: @result, editable: false
             - elsif @result.first.is_a?(User)
-              %table.table.table-bordered.table-striped
-                %thead
-                  %tr
-                    %th
-                      Username
-                    %th
-                      Erstellte Lernlisten
-                    %th
-                      Erstellte Fragen
-                %tbody
-                  - @result.each do |item|
-                    %tr
-                      %td
-                        = link_to item.username, user_path(item)
-                      %td
-                        = item.collections.count
-                      %td
-                        = item.questions.count
+              = render 'shared/users_table', users: @result
           - else
             %p
               Für diese Suche wurden leider keine Treffer gefunden.
+      .tab-pane#tagcloud_users
+        - tag_cloud(@interests, %w(tag-size-1, tag-size-2, tag-size-4, tag-size-4)) do |tag, cssclass|
+          = link_to tag.name, '?utf8=✓&condition=users_by_interests&q=' + tag.name, class: cssclass
+      .tab-pane#tagcloud_collections
+        - tag_cloud(@collection_tags, %w(tag-size-1, tag-size-2, tag-size-4, tag-size-4)) do |tag, cssclass|
+          = link_to tag.name, '?utf8=✓&condition=collections_by_tags&q=' + tag.name, class: cssclass
       .tab-pane#random_collections
         - if @random_collections.any?
-          %table.table.table-bordered.table-striped
-            %thead
-              %tr
-                %th
-                  Name
-                %th
-                  Beschreibung
-                %th
-                  Fragen
-                %th
-                  Autor
-            %tbody
-              - @random_collections.each do |item|
-                %tr
-                  %td
-                    = link_to item.name, collection_path(item)
-                  %td
-                    = item.description
-                  %td
-                    = item.questions.count
-                  %td
-                    = link_to item.user.username, user_path(item.user)
+          = render 'shared/collections_table', collections: @random_collections, editable: false
         - else
           %p
             Leider liegen derzeit keine zufälligen Lernlisten vor.

@@ -1,0 +1,44 @@
+.row
+  .span12
+    %ul.breadcrumb
+      %li
+        = link_to 'Home', user_path(current_user)
+        %span.divider
+          #{'/'}
+      %li.active
+        Lerncenter
+    .page-header
+      %h1
+        Lerncenter
+    - if @collections.any?
+      %table.table.table-bordered.table-striped
+        %thead
+          %tr
+            %th
+              Name
+            %th
+              Beschreibung
+            %th
+              Fragen
+            %th
+        %tbody
+          - @collections.each do |item|
+            %tr
+              %td
+                = item.name
+              %td
+                = item.description
+              %td
+                = item.questions.count
+              %td
+                - if item.questions.count == 0
+                  = link_to 'Lernen', learn_path(item), class: 'btn btn-primary disabled'
+                - else
+                  = link_to 'Lernen', learn_path(item), class: 'btn btn-primary'
+    - else
+      %p
+        Im Moment liegen leider keine Lernlisten vor, die gelernt, werden können. Erstelle im Menüpunkt
+        = link_to 'Lernlisten verwalten', collections_path
+        eigene Lernlisten oder folgen Lernlisten anderer Nutzer. Andere Lernlisten kannst du mit der
+        = link_to 'Suchen und Entdecken', search_path
+        Funktion nutzen

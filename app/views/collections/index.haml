@@ -14,70 +14,15 @@
     %h2
       Eigene Lernlisten
     - if @own_collections.any?
-      %table.table.table-bordered.table-striped
-        %thead
-          %tr
-            %th
-              Name
-            %th
-              Beschreibung
-            %th
-              Fragen
-            %th(colspan='2')
-        %tbody
-          - @own_collections.each do |item|
-            .modal.hide.fade{id: "delete_collection_modal_#{item.id}"}
-              .modal-header
-                %button.close(type='button' data-dismiss='modal')
-                %h3
-                  Lernliste löschen?
-              .modal-body
-                %p
-                  Möchtest du die Lernliste
-                  = '\'' + item.name + '\''
-                  löschen?
-                %p
-                  Dieser Schritt kann nicht rückgängig gemacht werden.
-              .modal-footer
-                %a.btn(href='#' data-dismiss='modal')
-                  Abbrechen
-                = link_to 'Lernliste löschen', item, method: :delete, class: 'btn btn-danger'
-            %tr
-              %td
-                = link_to item.name, collection_path(item)
-              %td
-                = item.description
-              %td
-                = item.questions.count
-              %td
-                = link_to raw('<i class="icon-edit"></i>'), edit_collection_path(item)
-              %td
-                = link_to raw('<i class="icon-trash"></i>'), "#delete_collection_modal_#{item.id}", data: { toggle: 'modal' }
+      = render 'shared/collections_table', collections: @own_collections, editable: true
     - else
       %p
         Du hast aktuell keine eigenen Lernlisten angelegt. Klicke auf den Button "Neue Lernliste erstellen" um eine neue Lernliste zu erstellen
   .span6  
     %h2
-      Lernlisten, denen du folgst
+      Gefolgte Lernlisten
     - if @followed_collections.any?
-      %table.table.table-bordered.table-striped
-        %thead
-          %tr
-            %th
-              Name
-            %th
-              Beschreibung
-            %th
-              Fragen
-        %tbody
-          - @followed_collections.each do |item|
-            %tr
-              %td
-                = link_to item.name, collection_path(item)
-              %td
-                = item.description
-              %td
-                = item.questions.count
+      = render 'shared/collections_table', collections: @followed_collections, editable: false
     - else
       %p
         Du folgst derzeit keinen anderen Lernlisten. Suche und entdecke Lernlisten anderer Nutzer mit der Funktion

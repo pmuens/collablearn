@@ -13,6 +13,7 @@ Collablearn::Application.routes.draw do
   
   match '/home/:id', to: 'users#home'
   match '/settings/:id', to: 'users#settings', as: 'settings'
+  match '/learncenter/:id', to: 'users#learncenter', as: 'learncenter'
   match '/fellowships/users/user/:id', to: 'users#fellowships_users', as: 'fellowships_users'
   match '/update_password', to: 'users#update_password'
 
@@ -20,6 +21,7 @@ Collablearn::Application.routes.draw do
   match '/masthead', to: 'pages#masthead'
   match '/contact', to: 'pages#contact'
   match '/search', to: 'pages#search'
+  match '/learn/collection/:id', to: 'pages#learn', as: 'learn'
 
   root to: 'pages#index'
 end

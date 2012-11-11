@@ -4,15 +4,19 @@
       = link_to 'Collablearn', :root, class: 'brand'
       %ul.nav.pull-right
         - if user_signed_in?
-          %li.dropdown
+          %li.dropdown.hidden-phone.hidden-tablet
             %a(href='#' class='dropdown-toggle' data-toggle='dropdown')
               = current_user.email
               %b.caret
             %ul.dropdown-menu
               %li
+                = link_to raw('<i class="icon-user"></i> Profil aktualisieren'), edit_user_path(current_user)
+              %li
                 = link_to raw('<i class="icon-wrench"></i> Einstellungen'), settings_path(current_user)
               %li
                 = link_to raw('<i class="icon-off"></i> Logout'), destroy_user_session_path
+          %li.hidden-desktop
+            = link_to 'Logout', destroy_user_session_path
         - else
           %li.dropdown
             %a(href='#' class='dropdown-toggle' data-toggle='dropdown')
@@ -35,4 +39,4 @@
                       Eingeloggt bleiben
                 .controls
                   = f.submit 'Login', disable_with: 'Login', class: 'btn btn-primary'
-              = link_to 'Passwort vergessen?', new_user_password_path, class: 'forgotten-password'
+              /= link_to 'Passwort vergessen?', new_user_password_path, class: 'forgotten-password'

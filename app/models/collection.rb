@@ -4,7 +4,7 @@ class Collection < ActiveRecord::Base
 
   attr_accessible :name, :description, :tag_list
 
-  acts_as_taggable
+  acts_as_taggable_on :tags
   acts_as_followable
 
   validates_presence_of :name

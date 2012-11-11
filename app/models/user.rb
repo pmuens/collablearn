@@ -8,11 +8,12 @@ class User < ActiveRecord::Base
   has_many :questions, dependent: :destroy
   has_many :collections, dependent: :destroy
 
-  attr_accessible :email, :username, :password, :password_confirmation, :terms_of_service, :remember_me
+  attr_accessible :email, :username, :password, :password_confirmation, :name, :bio, :interest_list, :terms_of_service, :remember_me
 
   acts_as_tagger
   acts_as_follower
 
+  acts_as_taggable_on :interests
   acts_as_followable
 
   username_regex = /\A[A-Za-z\d\-\_\.\+]+\z/
