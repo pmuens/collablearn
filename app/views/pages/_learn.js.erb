@@ -3,8 +3,10 @@
   old_rand = null;
   $('#shuffle').bind('click', function(){
     rand = Math.floor(Math.random() * questions.length);
-    while (old_rand == rand) {
-      rand = Math.floor(Math.random() * questions.length);
+    if (questions.length != 1) {
+      while (old_rand == rand) {
+        rand = Math.floor(Math.random() * questions.length);
+      }  
     }
     $('#question').text(questions[rand].question);
     $('#answer').text(questions[rand].answer);
