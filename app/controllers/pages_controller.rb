@@ -29,10 +29,11 @@ class PagesController < ApplicationController
   end
 
   def learn
-    @title = 'Lernen'
     @collection = Collection.find_by_id(params[:id])
-    if !@collection
-      redirect_to root_path, flash: { alert: 'Lernliste ist nicht vorhanden.' }
+    @questions = @collection.questions
+    @title = @collection.name + ' lernen'
+    if !@collection || @collection.questions.count == 0
+      redirect_to root_path, flash: { alert: 'Die Lernliste existiert leider nicht, bzw. es sind in der angeforderten Lernliste keine Fragen vorhanden.' }
     end
   end
 end

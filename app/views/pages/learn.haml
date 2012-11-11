@@ -15,12 +15,13 @@
           lernen
     .page-header
       %h1
-        = '\'' + @collection.name + '\''
+        = @collection.name
         lernen
   .span4.offset4
-    .well
-      Frage
-    .well
-      Antwort
-    .btn.btn-large
-      <i class="icon-random"></i>
+    .well#question
+    .btn.btn-block.btn-large#toggle
+      <i class="icon-resize-vertical"></i>
+    .well#answer
+    .btn.btn-block.btn-large.btn-primary#shuffle
+      Zufall
+= render 'pages/learn.js'

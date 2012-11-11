@@ -1,0 +1,18 @@
+<script type="text/javascript">
+  var questions = <%= raw @questions.to_json %>
+  old_rand = null;
+  $('#shuffle').bind('click', function(){
+    rand = Math.floor(Math.random() * questions.length);
+    while (old_rand == rand) {
+      rand = Math.floor(Math.random() * questions.length);
+    }
+    $('#question').text(questions[rand].question);
+    $('#answer').text(questions[rand].answer);
+    old_rand = rand;
+    $('#answer').hide();
+  });
+  $('#shuffle').trigger('click');
+  $('#toggle').click(function() {
+    $('#answer').toggle(100);
+  });
+</script>

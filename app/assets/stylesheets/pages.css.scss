@@ -1,9 +1,11 @@
+// index.haml
 ul.featurelist {
   li {
     margin-bottom: 10px;
   }
 }
 
+// search.haml
 input.search {
   width: 280px;
 }
@@ -26,4 +28,9 @@ select.condition {
 
 .tag-size-4 {
   font-size: 1.6em;
+}
+
+// learn.haml
+#toggle {
+  margin-bottom: 20px;
 }
