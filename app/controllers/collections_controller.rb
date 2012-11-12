@@ -2,7 +2,7 @@
 # encoding: utf-8
 class CollectionsController < ApplicationController
   before_filter :authenticate_user!, except: [:show]
-  #before_filter :correct_user, only: [:edit, :update_password, :update, :home]
+  before_filter :correct_user, only: [:edit, :update, :destroy]
 
   def index
     @title = 'Lernlisten verwalten'
@@ -51,9 +51,9 @@ class CollectionsController < ApplicationController
     redirect_to collections_path, flash: { success: 'Lernliste erfolgreich gelöscht.' }
   end
 
-  #private
-  #  def correct_user
-  #    @user = User.find(params[:id])
-  #    redirect_to root_path unless current_user?(@user)
-  #  end
+  private
+    def correct_user
+      @collection = Collection.find_by_id(params[:id])
+      redirect_to root_path unless @collection == current_user.collections.find_by_id(params[:id])
+    end
 end

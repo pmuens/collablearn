@@ -22,11 +22,12 @@
         Autor:
         = link_to @collection.user.username, user_path(@collection.user)
       %p
-        - if user_signed_in? && !current_user.collections.find_by_id(@collection)
-          - if user_signed_in? && current_user.following?(@collection)
-            = link_to 'Lernliste nicht mehr folgen', unfollow_collection_path(current_user, @collection), class: 'btn btn-danger'
-          - else
-            = link_to 'Lernliste folgen', follow_collection_path(current_user, @collection), class: 'btn btn-primary'
+        - if user_signed_in?
+          - if !current_user.collections.find_by_id(@collection)
+            - if current_user.following?(@collection)
+              = link_to 'Lernliste nicht mehr folgen', unfollow_collection_path(current_user, @collection), class: 'btn btn-danger'
+            - else
+              = link_to 'Lernliste folgen', follow_collection_path(current_user, @collection), class: 'btn btn-primary'
         - if @collection.questions.count == 0
           = link_to 'Jetzt lernen', '#', class: 'btn btn-primary disabled'
         - else
