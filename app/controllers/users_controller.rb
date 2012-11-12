@@ -2,7 +2,7 @@
 # encoding: utf-8
 class UsersController < ApplicationController
   before_filter :authenticate_user!, except: [:show]
-  #before_filter :correct_user, except: [:show]
+  before_filter :correct_user, except: [:show]
 
   def home
     @title = 'Deine Startseite'
@@ -62,7 +62,7 @@ class UsersController < ApplicationController
   end
 
   def follow_user
-    @followed_user = User.find_by_id(params[:id])
+    @followed_user = User.find_by_id(params[:followed_id])
     if current_user == @followed_user
       flash[:alert] = 'Du kannst dir nicht selber folgen.'
     else  
@@ -74,7 +74,7 @@ class UsersController < ApplicationController
   end
 
   def unfollow_user
-    @followed_user = User.find_by_id(params[:id])
+    @followed_user = User.find_by_id(params[:followed_id])
     if !current_user.stop_following(@followed_user)
       flash[:alert] = 'Nicht mehr folgen leider nicht erfolgreich :-( Versuche es erneut.'
     end
@@ -82,8 +82,8 @@ class UsersController < ApplicationController
   end
 
   def follow_collection
-    @followed_collection = Collection.find_by_id(params[:id])
-    if current_user.collections.find_by_id(params[:id]) == @followed_collection
+    @followed_collection = Collection.find_by_id(params[:collection_id])
+    if current_user.collections.find_by_id(params[:collection_id]) == @followed_collection
       flash[:alert] = 'Du kannst deiner eigenen Lernliste nicht folgen.'
     else
       if !current_user.follow(@followed_collection)
@@ -94,7 +94,7 @@ class UsersController < ApplicationController
   end
 
   def unfollow_collection
-    @followed_collection = Collection.find_by_id(params[:id])
+    @followed_collection = Collection.find_by_id(params[:collection_id])
     if !current_user.stop_following(@followed_collection)
       flash[:alert] = 'Nicht mehr folgen leider nicht erfolgreich :-( Versuche es erneut.'
     end

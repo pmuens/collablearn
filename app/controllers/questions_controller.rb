@@ -2,7 +2,8 @@
 # encoding: utf-8
 class QuestionsController < ApplicationController
   before_filter :authenticate_user!
-  #before_filter :correct_user, only: [:edit, :update, :destroy]
+  before_filter :correct_user, only: [:edit, :update, :destroy]
+  before_filter :is_open, only: [:new, :create]
 
   def new
     @title = 'Neue Frage erstellen'
@@ -44,9 +45,13 @@ class QuestionsController < ApplicationController
     end
   end
 
-  #private
-  #  def correct_user
-  #    @user = User.find(params[:id])
-  #    redirect_to root_path unless current_user?(@user)
-  #  end
+  private
+    def correct_user
+      @collection = Collection.find_by_id(params[:collection_id])
+      redirect_to root_path unless @collection == current_user.collections.find_by_id(params[:collection_id])
+    end
+    def is_open
+      @collection = Collection.find_by_id(params[:collection_id])
+      redirect_to root_path unless @collection == current_user.collections.find_by_id(params[:collection_id]) || @collection.is_open
+    end
 end
