@@ -11,7 +11,10 @@
     - users.each do |item|
       %tr
         %td
-          = link_to item.username, user_path(item)
+          - if item.name
+            = link_to item.username + ' (' + item.name + ')', user_path(item)
+          - else
+            = link_to item.username, user_path(item)
         %td
           = item.collections.count
         %td

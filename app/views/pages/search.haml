@@ -34,7 +34,8 @@
             - selected_condition = 'users_by_username' if params[:condition] == 'users_by_username'
             - selected_condition = 'collections_by_tags' if params[:condition] == 'collections_by_tags'
             - selected_condition = 'users_by_interests' if params[:condition] == 'users_by_interests'
-            = select_tag :condition, options_for_select({'Lernlisten nach Namen' => 'collections_by_name', 'Lernlisten nach Tags (mit , trennen)' => 'collections_by_tags', 'Nutzer nach Nutzernamen' => 'users_by_username', 'Nutzer nach Interessen (mit , trennen)' => 'users_by_interests'}, selected: selected_condition), class: 'condition'
+            - selected_condition = 'users_by_name' if params[:condition] == 'users_by_name'
+            = select_tag :condition, options_for_select({'Lernlisten nach Namen' => 'collections_by_name', 'Lernlisten nach Tags (mit , trennen)' => 'collections_by_tags', 'Nutzer nach Nutzernamen' => 'users_by_username', 'Nutzer nach Namen' => 'users_by_name', 'Nutzer nach Interessen (mit , trennen)' => 'users_by_interests'}, selected: selected_condition), class: 'condition'
             %span.input-append
               = text_field_tag :q, params[:q], id: 'appendInputButton', class: 'search'
               = submit_tag 'Suchen', name: nil, class: 'btn btn-primary'

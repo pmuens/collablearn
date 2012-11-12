@@ -17,9 +17,11 @@ class PagesController < ApplicationController
     @collection_tags = Collection.tag_counts_on(:tags)
     if params[:condition] && params[:q] && ! params[:q].blank?
       if params[:condition] == 'collections_by_name'
-        @result = Collection.where('name LIKE ?', "%#{params[:q]}%")
+        @result = Collection.where('name LIKE ?', "%#{params[:q]}%").order('name ASC')
       elsif params[:condition] == 'users_by_username'
-        @result = User.where('username LIKE ?', "%#{params[:q]}%")
+        @result = User.where('username LIKE ?', "%#{params[:q]}%").order('username ASC')
+      elsif params[:condition] == 'users_by_name'
+        @result = User. where('name LIKE ?', "%#{params[:q]}%").order('name ASC')
       elsif params[:condition] == 'collections_by_tags'
         @result = Collection.tagged_with(params[:q], any: true, on: :tags).uniq
       elsif params[:condition] == 'users_by_interests'

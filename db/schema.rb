@@ -11,14 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121111120546) do
+ActiveRecord::Schema.define(:version => 20121112175125) do
 
   create_table "collections", :force => true do |t|
     t.string   "name"
     t.integer  "user_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
     t.text     "description"
+    t.boolean  "is_open",     :default => false
   end
 
   add_index "collections", ["user_id"], :name => "index_collections_on_user_id"

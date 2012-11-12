@@ -2,7 +2,7 @@ class Collection < ActiveRecord::Base
   belongs_to :user
   has_many :questions, dependent: :destroy
 
-  attr_accessible :name, :description, :tag_list
+  attr_accessible :name, :description, :is_open, :tag_list
 
   acts_as_taggable_on :tags
   acts_as_followable

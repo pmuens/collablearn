@@ -32,7 +32,7 @@
                 = item.questions.count
               %td
                 - if item.questions.count == 0
-                  = link_to 'Lernen', learn_path(item), class: 'btn btn-primary disabled'
+                  = link_to 'Lernen', '#', class: 'btn btn-primary disabled'
                 - else
                   = link_to 'Lernen', learn_path(item), class: 'btn btn-primary'
     - else
