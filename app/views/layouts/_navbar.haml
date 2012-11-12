@@ -18,6 +18,8 @@
           %li.hidden-desktop
             = link_to 'Logout', destroy_user_session_path
         - else
+          %li
+            = link_to 'Registrieren', new_user_registration_path
           %li.dropdown
             %a(href='#' class='dropdown-toggle' data-toggle='dropdown')
               Login
