@@ -5,7 +5,7 @@ class Question < ActiveRecord::Base
   # TODO: fix that :user_id is not in mass_assignment-list
   attr_accessible :answer, :question, :title, :user_id
 
-  validates :title, presence: true, length: { in 1..30 }
-  validates :question, presence: true, length: { in 1..500 }
-  validates :answer, presence: true, length: { in 1..500 }
+  validates :title, presence: true, length: { in: 1..30 }
+  validates :question, presence: true, length: { in: 1..500 }
+  validates :answer, presence: true, length: { in: 1..500 }
 end

@@ -30,12 +30,12 @@ class QuestionsController < ApplicationController
 
   def edit
     @title = 'Frage editieren'
-    @collection = Collection.find_by_id(params[:collection_id])
+    @collection = current_user.collections.find_by_id(params[:collection_id])
     @question = @collection.questions.find_by_id(params[:id])
   end
 
   def update
-    @collection = Collection.find_by_id(params[:collection_id])
+    @collection = current_user.collections.find_by_id(params[:collection_id])
     @question = @collection.questions.find_by_id(params[:id])
     if @question.update_attributes(params[:question])
       redirect_to collection_path(@collection), flash: { success: 'Frage \'' + @question.title + '\' erfolgreich editiert.' }
