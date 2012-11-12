@@ -1,5 +1,5 @@
 <script type="text/javascript">
-  var questions = <%= raw @questions.to_json %>
+  var questions = <%=j @questions.to_json.html_safe %>
   old_rand = null;
   $('#shuffle').bind('click', function(){
     rand = Math.floor(Math.random() * questions.length);
