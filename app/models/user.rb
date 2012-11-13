@@ -20,4 +20,5 @@ class User < ActiveRecord::Base
 
   validates_acceptance_of :terms_of_service
   validates :username, presence: true, length: { in: 1..20 }, format: { with: username_regex }, uniqueness: { case_sensitive: false }
+  validates :bio, length: { in: 0..200 }
 end
