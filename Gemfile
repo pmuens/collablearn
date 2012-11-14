@@ -5,6 +5,7 @@ gem 'rails', '3.2.8'
 group :production do
   gem 'thin', '1.5.0'
   gem 'pg', '0.14.1'
+  gem 'newrelic_rpm', '3.5.1.14'
 end
 
 group :development do
