@@ -1,127 +1,143 @@
-/*
+// Own
+$baseGrey: #E2E2E2;
+
 // Scaffolding
-$bodyBackground: #000;
-$textColor: #000;
-*/
+//$bodyBackground
+//$textColor
 
-/*
 // Links
-$linkColor
-$linkColorHover
-/*
+$linkColor: #2174C0;
+$linkColorHover: darken($linkColor, 20%);
 
-/*
 // Colors
-$blue
-$green
-$red
-$yellow
-$orange
-$pink
-$purple
-*/
+//$blue
+//$green
+//$red
+//$yellow
+//$orange
+//$pink
+//$purple
 
-/*
+// Buttons
+//$btnBackground
+//$btnBackgroundHighlight
+//$btnBorder
+//$btnPrimaryBackground: #47A;
+$btnPrimaryBackground: #369;
+$btnPrimaryBackgroundHighlight: darken($btnPrimaryBackground, 5%);
+//$btnInfoBackground
+//$btnInfoBackgroundHighlight
+//$btnSuccessBackground
+//$btnSuccessBackgroundHighlight
+//$btnWarningBackground
+//$btnWarningBackgroundHighlight
+//$btnDangerBackground
+//$btnDangerBackgroundHighlight
+//$btnInverseBackground
+//$btnInverseBackgroundHighlight
+
 // Sprites
-$iconSpritePath
-$iconWhiteSpritePath
-*/
+//$iconSpritePath
+//$iconWhiteSpritePath
 
-/*
 // Grid system
-$gridColumns
-$gridColumnWidth
-$gridGutterWidth
-$gridColumnWidth1200
-$gridGutterWidth1200
-$gridColumnWidth768
-$gridGutterWidth768
-*/
+//$gridColumns
+//$gridColumnWidth
+//$gridGutterWidth
+//$gridColumnWidth1200
+//$gridGutterWidth1200
+//$gridColumnWidth768
+//$gridGutterWidth768
 
-/*
 // Typography
-$sansFontFamily
-$serifFontFamily
-$monoFontFamily
-$baseFontSize
-$baseFontFamily
-$baseLineHeight
-$altFontFamily
-$headingsFontFamily
-$headingsFontWeight
-$headingsColor
-$fontSizeLarge
-$fontSizeSmall
-$fontSizeMini
-$paddingLarge
-$paddingSmall
-$paddingMini
-$baseBorderRadius
-$borderRadiusLarge
-$borderRadiusSmall
-$heroUnitBackground
-$heroUnitHeadingColor
-$heroUnitLeadColor
-*/
+//$sansFontFamily
+//$serifFontFamily
+//$monoFontFamily
+//$baseFontSize
+//$baseFontFamily
+//$baseLineHeight
+//$altFontFamily
+//$headingsFontFamily
+//$headingsFontWeight
+//$headingsColor
+//$fontSizeLarge
+//$fontSizeSmall
+//$fontSizeMini
+//$paddingLarge
+//$paddingSmall
+//$paddingMini
+//$baseBorderRadius
+//$borderRadiusLarge
+//$borderRadiusSmall
+$heroUnitBackground: $baseGrey;
+//$heroUnitHeadingColor
+//$heroUnitLeadColor
 
-/*
 // Tables
-$tableBackground
-$tableBackgroundAccent
-$tableBackgroundHover
-$tableBorder
-*/
+//$tableBackground
+//$tableBackgroundAccent
+//$tableBackgroundHover
+//$tableBorder
 
-/*
-//Forms
-$placeholderText
-$inputBackground
-$inputBorder
-$inputBorderRadius
-$inputDisabledBackground
-$formActionsBackground
-$btnPrimaryBackground
-$btnPrimaryBackgroundHighlight
-*/
+// Forms
+//$placeholderText
+//$inputBackground
+//$inputBorder
+//$inputBorderRadius
+//$inputDisabledBackground
+//$formActionsBackground
+//$btnPrimaryBackground
+//$btnPrimaryBackgroundHighlight
 
-/*
 // Form states & alerts
-$warningText
-$warningBackground
-$errorText
-$errorBackground
-$successText
-$successBackground
-$infoText
-$infoBackground
-*/
-
+//$warningText
+//$warningBackground
+//$errorText
+//$errorBackground
+//$successText
+//$successBackground
+//$infoText
+//$infoBackground
 
 // Navbar
-/*
-$navbarHeight
-$navbarBackground
-$navbarBackgroundHighlight
-$navbarText
-$navbarBrandColor
-$navbarLinkColor
-$navbarLinkColorHover
-$navbarLinkColorActive
-$navbarLinkBackgroundHover
-$navbarLinkBackgroundActive
-$navbarSearchBackground
-$navbarSearchBackgroundFocus
-$navbarSearchBorder
-$navbarSearchPlaceholderColor
-$navbarCollapseWidth
-$navbarCollapseDesktopWidth
-*/
+$navbarHeight: 50px;
+//$navbarBackground:
+//$navbarBackgroundHighlight
+$navbarInverseBackgroundHighlight: #369;
+$navbarInverseBackground: darken($navbarInverseBackgroundHighlight, 8%);
+$navbarInverseBorder: #295988;
+//$navbarInverseText
+$navbarInverseLinkColor: #FFF;
+$navbarInverseLinkColorHover: #FFF;
+//$navbarInverseLinkColorActive
+//$navbarInverseLinkBackgroundHover
+//$navbarInverseLinkBackgroundActive
+//$navbarInverseSearchBackground
+//$navbarInverseSearchBackgroundFocus
+//$navbarInverseSearchBorder
+//$navbarInverseSearchPlaceholderColor
+$navbarInverseBrandColor: #FFF;
+//$navbarText
+//$navbarBrandColor
+//$navbarLinkColor
+//$navbarLinkColorHover
+//$navbarLinkColorActive
+//$navbarLinkBackgroundHover
+//$navbarLinkBackgroundActive
+//$navbarSearchBackground
+//$navbarSearchBackgroundFocus
+//$navbarSearchBorder
+//$navbarSearchPlaceholderColor
+//$navbarCollapseWidth
+//$navbarCollapseDesktopWidth
 
-/*
 // Dropdown
-$dropdownBackground
-$dropdownBorder
-$dropdownLinkColor
-$dropdownLinkColorHover
-$dropdownLinkBackgroundHover
-*/
+//$dropdownBackground
+//$dropdownBorder
+//$dropdownLinkColor
+//$dropdownLinkColorHover
+$dropdownLinkBackgroundHover: #369;
+
+// Miscellaneous
+$wellBackground: $baseGrey;
+//$breadcrumb

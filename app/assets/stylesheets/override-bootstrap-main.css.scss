@@ -44,12 +44,28 @@ textarea {
   }
 }
 
+.page-header {
+  border-bottom: 1px solid $baseGrey;
+}
+
+.breadcrumb {
+  background-color: $baseGrey;
+  .active {
+    color: darken($baseGrey, 25%);
+  }
+}
+
+.nav-tabs > .active > a,
+.nav-tabs > .active > a:hover {
+  background-color: $baseGrey;
+}
+
 /* -------------------- Footer --------------------- */
 .footer {
   padding: 30px 0;
   margin-top: 70px;
-  border-top: 1px solid #e5e5e5;
-  background-color: #f5f5f5;
+  border-top: 1px solid #CFCFCF;
+  background-color: $baseGrey;
 }
 
 .footer p {
