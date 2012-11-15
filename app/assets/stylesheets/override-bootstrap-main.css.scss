@@ -53,6 +53,9 @@ textarea {
   .active {
     color: darken($baseGrey, 25%);
   }
+  .divider {
+    color: darken($baseGrey, 20%);
+  }
 }
 
 .nav-tabs > .active > a,
