@@ -27,6 +27,9 @@
           = f.password_field :password_confirmation, id: 'password_confirmation'
       .control-group
         .controls
+          = show_simple_captcha(object: resource_name)
+      .control-group
+        .controls
           %label.checkbox
             = f.check_box 'terms_of_service'
             Ich akzeptiere die

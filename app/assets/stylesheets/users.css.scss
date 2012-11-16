@@ -1,0 +1,16 @@
+.simple_captcha {
+  border: 1px solid #CCC;
+  background-color: $baseGrey;
+  padding: 5px;
+  .simple_captcha_image {
+    width: 120px;
+    margin: 0 auto;
+    margin-bottom: 5px;
+  }
+  .simple_captcha_field {
+    margin-bottom: 5px;
+  }
+  .simple_captcha_label {
+    text-align: center;
+  }
+}

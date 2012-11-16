@@ -201,3 +201,9 @@ de:
   activerecord:
     errors:
       <<: *errors
+  simple_captcha:
+    label:
+      Gib bitte den oben stehenden Code ein
+    message:
+      user:
+        war leider nicht korrekt
