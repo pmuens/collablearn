@@ -63,6 +63,12 @@ textarea {
   background-color: $baseGrey;
 }
 
+.well {
+  p {
+    margin: 0;
+  }
+}
+
 /* -------------------- Footer --------------------- */
 .footer {
   padding: 30px 0;
