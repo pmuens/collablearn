@@ -75,9 +75,9 @@ $heroUnitBackground: $baseGrey;
 
 // Tables
 //$tableBackground
-//$tableBackgroundAccent
+$tableBackgroundAccent: $baseGrey;
 //$tableBackgroundHover
-//$tableBorder
+$tableBorder: darken($baseGrey, 10%);
 
 // Forms
 //$placeholderText
@@ -140,4 +140,3 @@ $dropdownLinkBackgroundHover: #369;
 
 // Miscellaneous
 $wellBackground: $baseGrey;
-//$breadcrumb
