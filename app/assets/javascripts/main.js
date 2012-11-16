@@ -1,6 +1,6 @@
 $(document).ready(function() {
   $('#submit_comment').click(function() {
-    $('#homepage').val('collablearn.de');
+    $('#homepage').val('collablearnapp.com');
   });
   $('#fadeout').delay(5000).fadeOut(400);
   $('#rot13_email').click(function() {
