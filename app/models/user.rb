@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
   acts_as_taggable_on :interests
   acts_as_followable
 
-  username_regex = /\A[A-Za-z\d\-\_\.\+]+\z/
+  username_regex = /\A[A-Za-z\d\-\_]+\z/
 
   validates_acceptance_of :terms_of_service
   validates :username, presence: true, length: { in: 1..20 }, format: { with: username_regex }, uniqueness: { case_sensitive: false }
