@@ -1,8 +1,10 @@
 %p
-  Welcome
+  Willkommen
   = @resource.email
   !
 %p
-  You can confirm your account E-Mail througth the link below:
+  Du kannst mit dem unten stehenden Link deinen Account freischalten!
 %p
-  = link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @resource.confirmation_token)
+  = link_to 'Account freischalten', confirmation_url(@resource, confirmation_token: @resource.confirmation_token)
+%p
+  Viel Spaß auf collablearn.de wünscht dir das Collablearn-Team!

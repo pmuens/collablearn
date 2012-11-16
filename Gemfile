@@ -28,5 +28,4 @@ gem 'will_paginate', '3.0.3'
 gem 'acts-as-taggable-on', '2.3.3'
 gem 'devise', '2.1.2'
 gem 'acts_as_follower', '0.1.1'
-
 gem 'galetahub-simple_captcha', '0.1.3', :require => 'simple_captcha'

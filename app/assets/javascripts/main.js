@@ -2,7 +2,7 @@ $(document).ready(function() {
   $('#submit_comment').click(function() {
     $('#homepage').val('collablearn.de');
   });
-  $('#fadeout').delay(3000).fadeOut(400);
+  $('#fadeout').delay(5000).fadeOut(400);
   $('#rot13_email').click(function() {
     window.location.href = rot13('YOUREMAILHERE');
   });

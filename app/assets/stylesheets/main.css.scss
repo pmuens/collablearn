@@ -14,9 +14,9 @@ ul.dropdown-menu {
   a.forgotten-password {
     margin-top: 10px;
     text-align: right;
-    color: #08C;
+    color: $linkColor;
     &:hover {
-      color: #005580;
+      color: $linkColorHover;
     }
   }
 }
