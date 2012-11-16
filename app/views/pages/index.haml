@@ -1,63 +1,37 @@
 .row
   .span12
+    #myCarousel.carousel.slide
+      .carousel-inner
+        .item.active
+          %img{src: "#{image_path('desc_1.png')}", alt: ''}
+          .carousel-caption
+            %h4
+              Immer und überall lernen
+            %p
+              Mit Collablearn kannst du deine Fragen überall lernen. Egal, ob du am Desktop Computer, Notebook oder unterwegs mit dem Smartphone lernen möchtest.
+        .item
+          %img{src: "#{image_path('desc_2.png')}", alt: ''}
+          .carousel-caption
+            %h4
+              Gemeinsam zum Erfolg
+            %p
+              Greife auf das Wissen der anderen Nutzer zurück, indem du ihnen und ihren Lernlisten folgst. Erstelle mit anderen Nutzern zusammen Lernlisten, die ihr lernen könnt.
+        .item
+          %img{src: "#{image_path('desc_3.png')}", alt: ''}
+          .carousel-caption
+            %h4
+              Neue Dinge entdecken
+            %p
+              Entdecke neue, spannenden Themenbereiche und interessante Nutzer.
+      %a.left.carousel-control(href='#myCarousel' data-slide='prev')
+        ‹
+      %a.right.carousel-control(href='#myCarousel' data-slide='next')
+        ›
+  .span6
     .hero-unit
-      %h1
-        Collablearn
       %p
-        Collablearn ermöglicht es dir mit anderen Nutzern Lernlisten zu erstellen und online lernen! Lerne wo und wann immer du willst! Auch unterwegs!
+        = link_to 'Collablearn durchstöbern', search_path, class: 'btn btn-large'
+  .span6
+    .hero-unit
       %p
-        = link_to 'Collablearn durchsuchen und entdecken', search_path, class: 'btn btn-primary btn-large'
-  .span4.offset1
-    .page-header
-      %h1
-        Features
-    %ul.featurelist
-      %li
-        Lernlisten erstellen und online lernen
-      %li
-        Andere Lernlisten erweitern
-      %li
-        Neue interessante Themenbereiche kennenlernen
-      %li
-        Auch per Smartphone mobil lernen
-      %li
-        Deine Leistung steigern
-      %li
-        Es ist kostenlos
-  .span5.offset1
-    .page-header
-      %h1
-        Registrieren
-    = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'form-horizontal' } ) do |f|
-      .control-group
-        %label.control-label{for: 'email'}
-          E-Mail
-        .controls
-          = f.email_field :email, id: 'email'
-      .control-group
-        %label.control-label{for: 'username'}
-          Benutzername
-        .controls
-          = f.text_field :username, id: 'username'
-      .control-group
-        %label.control-label{for: 'password'}
-          Passwort
-        .controls
-          = f.password_field :password, id: 'password'
-      .control-group
-        %label.control-label{for: 'password_confirmation'}
-          Passwort wiederholen
-        .controls
-          = f.password_field :password_confirmation, id: 'password_confirmation'
-      .control-group
-        .controls
-          %label.checkbox
-            = f.check_box 'terms_of_service'
-            Ich akzeptiere die
-            = link_to 'Nutzungsbedingungen', terms_of_service_path
-      .control-group
-        .controls
-          = f.submit 'Registrieren', disable_with: 'Registrieren', class: 'btn btn-primary'
-    %p
-      Du hast schon einen Account? Dann kannst du dich hier 
-      = link_to 'einloggen.', new_user_session_path
+        = link_to 'Registrieren', new_user_registration_path, class: 'btn btn-large btn-primary'
