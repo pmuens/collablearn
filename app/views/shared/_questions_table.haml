@@ -7,7 +7,7 @@
         Frage
       %th
         Antwort
-      %th
+      %th.hidden-phone
         Autor
       - if editable
         %th.hidden-phone(colspan='2')
@@ -37,7 +37,7 @@
           = item.question
         %td
           = item.answer
-        %td
+        %td.hidden-phone
           = link_to item.user.username, user_path(item.user)
         - if editable
           %td.hidden-phone
