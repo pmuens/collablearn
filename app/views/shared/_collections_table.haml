@@ -8,7 +8,7 @@
       %th
         Fragen
       - if editable
-        %th(colspan='2')
+        %th.hidden-phone(colspan='2')
   %tbody
     - collections.each do |item|
       - if editable
@@ -36,7 +36,7 @@
         %td
           = item.questions.count
         - if editable
-          %td
+          %td.hidden-phone
             = link_to raw('<i class="icon-edit"></i>'), edit_collection_path(item)
-          %td
+          %td.hidden-phone
             = link_to raw('<i class="icon-trash"></i>'), "#delete_collection_modal_#{item.id}", data: { toggle: 'modal' }

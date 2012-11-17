@@ -10,7 +10,7 @@
       %th
         Autor
       - if editable
-        %th(colspan='2')
+        %th.hidden-phone(colspan='2')
   %tbody
     - questions.each do |item|
       - if editable
@@ -40,7 +40,7 @@
         %td
           = link_to item.user.username, user_path(item.user)
         - if editable
-          %td
+          %td.hidden-phone
             = link_to raw('<i class="icon-edit"></i>'), edit_collection_question_path(collection, item)
-          %td
+          %td.hidden-phone
             = link_to raw('<i class="icon-trash"></i>'), "#delete_question_modal_#{item.id}", data: { toggle: 'modal' }
