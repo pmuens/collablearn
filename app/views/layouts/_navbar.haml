@@ -20,7 +20,9 @@
         - else
           %li.hidden-phone
             = link_to 'Registrieren', new_user_registration_path
-          %li.dropdown
+          %li.visible-phone
+            = link_to 'Login', new_user_session_path
+          %li.dropdown.hidden-phone
             %a(href='#' class='dropdown-toggle' data-toggle='dropdown')
               Login
               %b.caret
