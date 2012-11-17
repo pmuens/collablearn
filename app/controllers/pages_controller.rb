@@ -39,4 +39,12 @@ class PagesController < ApplicationController
       @title = @collection.name + ' lernen'
     end
   end
+
+  def masthead
+    @title = 'Impressum'
+  end
+
+  def terms_of_service
+    @title = 'Nutzungsbedingungen'
+  end
 end
