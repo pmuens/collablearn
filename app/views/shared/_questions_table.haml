@@ -1,7 +1,7 @@
 %table.table.table-bordered.table-striped
   %thead
     %tr
-      %th
+      %th.hidden-phone
         Titel
       %th
         Frage
@@ -31,7 +31,7 @@
               Abbrechen
             = link_to 'Frage löschen', collection_question_path(collection, item), method: :delete, class: 'btn btn-danger'
       %tr
-        %td
+        %td.hidden-phone
           = item.title
         %td
           = item.question
