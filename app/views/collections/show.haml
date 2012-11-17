@@ -40,7 +40,8 @@
     - else
       %p
         Aktuell sind in dieser Lernliste noch keine Fragen eingetragen.
-    - if @collection.is_open || @collection.user == current_user
-      = link_to 'Frage hinzufügen', new_collection_question_path(@collection), class: 'btn btn-primary'
-    - else
-      Diese Lernliste ist geschlossen. Neue Fragen können nicht hinzugefügt werden.
+    - if user_signed_in?
+      - if @collection.is_open || @collection.user == current_user
+        = link_to 'Frage hinzufügen', new_collection_question_path(@collection), class: 'btn btn-primary'
+      - else
+        Diese Lernliste ist geschlossen. Neue Fragen können nicht hinzugefügt werden.

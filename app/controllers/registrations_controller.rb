@@ -1,3 +1,5 @@
+#!/bin/env ruby
+# encoding: utf-8
 class RegistrationsController < Devise::RegistrationsController
   def create
     build_resource
