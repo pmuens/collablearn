@@ -65,5 +65,8 @@ module Collablearn
 
     # Default language
     config.i18n.default_locale = :de
+
+    # Default logging for Unicorn
+    config.logger = Logger.new(STDOUT)
   end
 end
