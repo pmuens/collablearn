@@ -57,7 +57,7 @@ class UsersController < ApplicationController
       redirect_to root_path, flash: { success: 'Passwort erfolgreich aktualisiert.' }
     else
       @title = 'Einstellungen'
-      render 'edit'
+      render 'settings'
     end
   end
 
