@@ -25,6 +25,9 @@
         %li
           %a(href='#random_collections' data-toggle='tab')
             Zufällige Lernlisten
+        %li
+          %a(href='#random_users' data-toggle='tab')
+            Zufällige Nutzer
     .tab-content
       .tab-pane.active#search
         .span8.offset2
@@ -63,3 +66,9 @@
         - else
           %p
             Leider liegen derzeit keine zufälligen Lernlisten vor.
+      .tab-pane#random_users
+        - if @random_users.any?
+          = render 'shared/users_table', users: @random_users, editable: false
+        - else
+          %p
+            Leider liegen derzeit keine zufälligen Nutzer vor.

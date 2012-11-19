@@ -13,6 +13,7 @@ class PagesController < ApplicationController
   def search
     @title = 'Suchen und Entdecken'
     @random_collections = Collection.limit(10).sort_by{rand}
+    @random_users = User.limit(10).sort_by{rand}
     @interests = User.tag_counts_on(:interests)
     @collection_tags = Collection.tag_counts_on(:tags)
     if params[:condition] && params[:q] && ! params[:q].blank?
