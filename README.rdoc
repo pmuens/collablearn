@@ -4,7 +4,7 @@ Collablearn is a social network for the purpose of online learning and sharing o
 == Terminology
 In this documentation, maintained means CRUD (Create, Read, Update, Delete)
 
-== The Strucutre
+== The Structure
 In Collablearn, two usergroups are targeted. One usergroup is the one which only wants to consume and not to contribute. This usergroup is the "consumer"-usergroup
 The other usergroup is the group of users which registered for the service and collaborate and deliver content. This usergroup is the "prosumer"-usergroup.
 
