@@ -1,0 +1,27 @@
+.tablesorter-header {
+  background-image: image-url('ascdesc.gif');
+  background-repeat: no-repeat;
+  background-position: center right;
+  padding: 4px 18px 4px 4px;
+  white-space: normal;
+  cursor: pointer;
+}
+
+.tablesorter-headerSortUp,
+.tablesorter-headerSortDown,
+.tablesorter-headerAsc,
+.tablesorter-headerDesc {
+  background-image: url();
+}
+
+.headerSortUp,
+.tablesorter-headerSortUp,
+.tablesorter-headerAsc {
+  background-image: image-url('asc.gif');
+}
+
+.headerSortDown,
+.tablesorter-headerSortDown,
+.tablesorter-headerDesc {
+  background-image: image-url('desc.gif');
+}

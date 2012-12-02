@@ -14,4 +14,5 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require main
+//= require jquery-tablesorter
 //= require_tree .

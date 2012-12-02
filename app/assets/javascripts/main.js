@@ -6,6 +6,7 @@ $(document).ready(function() {
   $('#rot13_email').click(function() {
     window.location.href = rot13('YOUREMAILHERE');
   });
+  $('.tablesorter').tablesorter();
 });
 
 function rot13(string) {
