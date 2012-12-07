@@ -25,7 +25,7 @@
           - @collections.each do |item|
             %tr
               %td
-                = item.name
+                = link_to item.name, collection_path(item)
               %td.hidden-phone
                 = item.description
               %td
