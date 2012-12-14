@@ -55,10 +55,10 @@
             %p
               Für diese Suche wurden leider keine Treffer gefunden.
       .tab-pane#tagcloud_users
-        - tag_cloud(@interests, %w(tag-size-1, tag-size-2, tag-size-4, tag-size-4)) do |tag, cssclass|
+        - tag_cloud(@interests, %w(tag-size-1, tag-size-2, tag-size-3, tag-size-4)) do |tag, cssclass|
           = link_to tag.name, '?utf8=✓&condition=users_by_interests&q=' + tag.name, class: cssclass
       .tab-pane#tagcloud_collections
-        - tag_cloud(@collection_tags, %w(tag-size-1, tag-size-2, tag-size-4, tag-size-4)) do |tag, cssclass|
+        - tag_cloud(@collection_tags, %w(tag-size-1, tag-size-2, tag-size-3, tag-size-4)) do |tag, cssclass|
           = link_to tag.name, '?utf8=✓&condition=collections_by_tags&q=' + tag.name, class: cssclass
       .tab-pane#random_collections
         - if @random_collections.any?
