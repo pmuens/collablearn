@@ -67,4 +67,7 @@ Collablearn::Application.configure do
 
   # Mailer
   config.action_mailer.default_url_options = { :host => 'collablearnapp.com' }
+
+  # TrackerID for Google Analytics
+  GA.tracker = 'UA-37070835-1'
 end

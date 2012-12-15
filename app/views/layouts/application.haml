@@ -10,6 +10,7 @@
       = title
     = stylesheet_link_tag 'application'
     = javascript_include_tag 'application'
+    = analytics_init if Rails.env.production?
     = csrf_meta_tags
   %body
     = render 'layouts/navbar'
