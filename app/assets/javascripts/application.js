@@ -15,4 +15,5 @@
 //= require bootstrap
 //= require main
 //= require jquery-tablesorter
+//= require fastclick
 //= require_tree .
