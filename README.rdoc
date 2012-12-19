@@ -42,6 +42,7 @@ The "Prosumer" can create an account and can add detailed information associated
   - JavaScript only embedded in the learn-page for learning the questions without reloading the page
 - config/environments/*.rb
   - Mailer needs to be added here to get the right URL when sending E-Mail Messages
+  - Added the Google Analytics Token (only in production.rb)
 - config/initializers/acts_as_taggable_on.rb
   - The config for the gem "acts-as-taggable-on" to delete not used tags and to lowercase all tags in the database
 - config/initializers/devise.rb
@@ -82,3 +83,8 @@ The "Prosumer" can create an account and can add detailed information associated
 - coffee-rails --> Coffescript support for rails
 - jquery-rails --> jQuery in the asset pipeline for rails
 - pg --> Postgres Database support
+- google-analytics-rails --> Enables Google Analytic tracking
+- jquery-tablesorter --> Enables the possibility to sort tables with the help of JavaScript
+
+== Vendor assets used
+- fastclick.js --> Disables the mobile Browser 300ms delay when clicking an Element
