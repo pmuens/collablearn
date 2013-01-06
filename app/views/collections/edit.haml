@@ -11,10 +11,10 @@
           #{'/'}
       %li.active
         Lernliste editieren
+  .span6.offset3
     .page-header
       %h1
         Lernliste editieren
-  .span5.offset3
     = form_for(@collection, html: { class: 'form-horizontal' } ) do |f|
       = render 'shared/error_messages', object: @collection
       .control-group

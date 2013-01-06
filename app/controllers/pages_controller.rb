@@ -6,7 +6,6 @@ class PagesController < ApplicationController
       redirect_to current_user
     else
       @title = 'Gemeinsam online lernen'
-      @user = User.new
     end
   end
 
