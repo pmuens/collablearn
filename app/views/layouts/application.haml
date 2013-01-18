@@ -14,7 +14,7 @@
     = analytics_init if Rails.env.production?
     = csrf_meta_tags
   %body
-    = render 'layouts/facebook_social_plugins'
+    = render 'layouts/facebook_social_plugins.js.erb'
     = render 'layouts/navbar'
     .container
       = render 'layouts/flash_messages'
