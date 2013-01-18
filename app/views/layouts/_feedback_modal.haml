@@ -1,0 +1,16 @@
+.modal.hide.fade{id: 'feedback_modal'}
+  .modal-header
+    %button.close(type='button' data-dismiss='modal')
+    %h3
+      Feedback senden
+  .modal-body
+    %p
+      Das Collablearn-Team möchte, dass du optimal beim Lernen durch Collablearn unterstützt wirst!
+      Sende uns jetzt dein Feedback zu, um zusammen mit uns Collablearn zu gestalten!
+    %p
+      Vielen Dank!
+    %p
+      Dein Collablearn-Team
+    = form_tag '/feedback' do
+      = text_area_tag 'feedback', nil, rows: 10
+      = submit_tag 'Feedback abschicken', disable_with: 'Feedback abschicken', class: 'btn btn-primary'

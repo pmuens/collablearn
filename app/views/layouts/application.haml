@@ -14,9 +14,11 @@
     = analytics_init if Rails.env.production?
     = csrf_meta_tags
   %body
+    = render 'layouts/feedback_modal'
     = render 'layouts/facebook_social_plugins.js.erb'
     = render 'layouts/navbar'
     .container
       = render 'layouts/flash_messages'
       = yield
     = render 'layouts/footer'
+    = link_to 'Feedback', "#feedback_modal", data: { toggle: 'modal' }, class: 'visible-desktop hero-unit feedback-button'
