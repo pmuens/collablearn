@@ -5,6 +5,13 @@ ul.featurelist {
   }
 }
 
+footer {
+  .fb-like {
+    float: right;
+    margin-right: 20px;
+  }
+}
+
 // search.haml
 input.search {
   width: 300px;
