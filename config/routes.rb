@@ -19,6 +19,7 @@ Collablearn::Application.routes.draw do
 
   match '/terms_of_service', to: 'pages#terms_of_service'
   match '/masthead', to: 'pages#masthead'
+  match '/privacy', to: 'pages#privacy'
   match '/search', to: 'pages#search'
   match '/learn/collection/:id', to: 'pages#learn', as: 'learn'
 

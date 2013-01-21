@@ -47,4 +47,8 @@ class PagesController < ApplicationController
   def terms_of_service
     @title = 'Nutzungsbedingungen'
   end
+
+  def privacy
+    @title = 'Datenschutz'
+  end
 end
