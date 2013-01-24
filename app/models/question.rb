@@ -6,6 +6,6 @@ class Question < ActiveRecord::Base
   attr_accessible :answer, :question, :title, :user_id
 
   validates :title, presence: true, length: { in: 1..50 }
-  validates :question, presence: true, length: { in: 1..500 }
-  validates :answer, presence: true, length: { in: 1..500 }
+  validates :question, presence: true#, length: { in: 1..500 }
+  validates :answer, presence: true#, length: { in: 1..500 }
 end
