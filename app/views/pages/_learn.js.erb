@@ -30,4 +30,26 @@
   $('#toggle').click(function() {
     $('#answer').slideToggle(150);
   });
+
+  // Keyboardcontrols
+  $(document).keydown(function (e) {
+    var key_code = e.key_code || e.which,
+    arrow = {left: 37, up: 38, right: 39, down: 40 };
+    switch (key_code) {
+      // Show / Hide Answer
+      case arrow.up:
+        $('#toggle').trigger('click');
+      break;
+      case arrow.down:
+        $('#toggle').trigger('click');
+      break;
+      // Next Question
+      case arrow.left:
+        $('#shuffle').trigger('click');
+      break;
+      case arrow.right:
+        $('#shuffle').trigger('click');
+      break;
+    }
+  });
 </script>
