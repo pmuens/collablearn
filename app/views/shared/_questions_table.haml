@@ -34,9 +34,9 @@
         %td.hidden-phone
           = item.title
         %td
-          = item.question
+          = simple_format(item.question)
         %td
-          = item.answer
+          = simple_format(item.answer)
         %td.hidden-phone
           = link_to item.user.username, user_path(item.user)
         - if editable
