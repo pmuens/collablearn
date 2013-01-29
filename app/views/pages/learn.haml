@@ -22,10 +22,21 @@
         = @collection.name
         lernen
   .span4.offset4
+    .well#status
+      .progress
+        .bar.bar-success#progress-correct
+        .bar.bar#progress-total
+      %p#times-correct
+      \/
+      %p#times-incorrect
     .well#question
     .btn.btn-block.btn-large#toggle
       <i class="icon-resize-vertical"></i>
     .well#answer
-    .btn.btn-block.btn-large.btn-primary#shuffle
-      Nächste Frage
+    .btn.btn-block.btn-large.btn-success#button-correct
+      Richtig beantwortet
+    .btn.btn-block.btn-large.btn-danger#button-incorrect
+      Falsch beantwortet
+    .btn.btn-block.btn-large.btn-primary#new-iteration
+      Neue Fragerunde
 = render 'pages/learn.js.erb'

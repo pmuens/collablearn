@@ -1,4 +1,11 @@
 <script type="text/javascript">
+  // load the questions in the incorrect-array
+  var incorrect = shuffle_array(<%=j @questions.to_json.html_safe %>)
+  var questions_total = incorrect.length;
+  // create an array to store the correct questions
+  var correct = new Array();
+
+  // surrounding text with correct html-elements
   function simple_format(str) {
     str = str.replace(/\r\n?/, "\n");
     str = $.trim(str);
@@ -10,45 +17,98 @@
     return str;
   }
 
-  var questions = <%=j @questions.to_json.html_safe %>
-  old_rand = null;
-  $('#shuffle').bind('click', function(){
-    rand = Math.floor(Math.random() * questions.length);
-    if (questions.length != 1) {
-      while (old_rand == rand) {
-        rand = Math.floor(Math.random() * questions.length);
-      }  
-    }
+  // shuffle the given array
+  function shuffle_array(array) {
+    for(var j, x, i = array.length; i; j = parseInt(Math.random() * i), x = array[--i], array[i] = array[j], array[j] = x);
+    return array;
+  }
+
+  function new_question() {
     $('#question').text('');
     $('#answer').text('');
-    $('#question').append(simple_format(questions[rand].question));
-    $('#answer').append(simple_format(questions[rand].answer));
-    old_rand = rand;
+    $('#question').append(simple_format(incorrect[incorrect.length-1].question));
+    $('#answer').append(simple_format(incorrect[incorrect.length-1].answer));
     $('#answer').hide();
-  });
-  $('#shuffle').trigger('click');
+  }
+
+  // toggle the answer-div, if someone clicks the show/hide-button
   $('#toggle').click(function() {
     $('#answer').slideToggle(150);
   });
 
-  // Keyboardcontrols
+  // if someone clicks the correct-button
+  $('#button-correct').click(function() {
+    correct.push(incorrect.pop());
+    $('#times-correct').html(parseInt($('#times-correct').html(), 10) + 1);
+    // Modify the progressbar
+    $('#progress-correct')
+    percent_correct = correct.length / questions_total * 100;
+    percent_incorrect = 100 - percent_correct;
+    $('#progress-total').width(percent_incorrect + '%');
+    $('#progress-correct').width(percent_correct + '%');
+    if (incorrect.length == 0) {
+      $('#question').text('Herzlichen Glückwunsch! Du hast alle Fragen beantwortet!');
+      $('#toggle').hide();
+      $('#button-correct').hide();
+      $('#button-incorrect').hide();
+      $('#new-iteration').show();
+    } else {
+      new_question();  
+    }
+  });
+
+  // if someone click the incorrect-button
+  $('#button-incorrect').click(function() {
+    var last_element = incorrect.pop();
+    incorrect.reverse();
+    incorrect.push(last_element);
+    incorrect.reverse();
+    new_question();
+  });
+
+  // start a new iteration
+  $('#new-iteration').click(function() {
+    incorrect = correct;
+    correct = [];
+    $('#progress-total').width('100%');
+    $('#progress-correct').width('0%');
+    $('#times-correct').text('0');
+    $('#new-iteration').hide();
+    $('#toggle').show();
+    $('#button-correct').show();
+    $('#button-incorrect').show();
+    new_question();
+  });
+
+  // set the styles / texts for the html-components on load
+  $('#new-iteration').hide();
+  $('#times-correct').append('0');
+  $('#times-incorrect').append(questions_total);
+  $('#progress-total').width('100%');
+  $('#progress-correct').width('0%');
+
+  // start with a new question
+  new_question();
+
+  // keyboardcontrols
   $(document).keydown(function (e) {
     var key_code = e.key_code || e.which,
     arrow = {left: 37, up: 38, right: 39, down: 40 };
     switch (key_code) {
-      // Show / Hide Answer
+      // show / hide Answer
       case arrow.up:
         $('#toggle').trigger('click');
       break;
       case arrow.down:
         $('#toggle').trigger('click');
       break;
-      // Next Question
+      // user has no clue
       case arrow.left:
-        $('#shuffle').trigger('click');
+        $('#button-incorrect').trigger('click');
       break;
+      // user knows the correct answer
       case arrow.right:
-        $('#shuffle').trigger('click');
+        $('#button-correct').trigger('click');
       break;
     }
   });

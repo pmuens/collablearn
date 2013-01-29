@@ -41,3 +41,18 @@ select.condition {
 #toggle {
   margin-bottom: 20px;
 }
+
+#status {
+  text-align: center;
+}
+
+#status {
+  .progress {
+    margin-bottom: 5px;
+  }
+  padding: 19px 19px 10px 19px;
+}
+
+p#times-incorrect, p#times-correct {
+  display: inline;
+}
