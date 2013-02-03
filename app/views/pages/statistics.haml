@@ -1,0 +1,24 @@
+.row
+  .span12
+    .page-header
+      %h1
+        Statistiken
+.row
+  .span4
+    .hero-unit
+      %h1
+        = @users.count
+      %p
+        Nutzer
+  .span4
+    .hero-unit
+      %h1
+        = @collections.count
+      %p
+        Lernlisten
+  .span4
+    .hero-unit
+      %h1
+        = @questions.count
+      %p
+        Fragen

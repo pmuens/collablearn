@@ -51,4 +51,11 @@ class PagesController < ApplicationController
   def privacy
     @title = 'Datenschutz'
   end
+
+  def statistics
+    @title = 'Statistiken'
+    @users = User.all
+    @collections = Collection.all
+    @questions = Question.all
+  end
 end

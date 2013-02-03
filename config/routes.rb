@@ -23,6 +23,8 @@ Collablearn::Application.routes.draw do
   match '/search', to: 'pages#search'
   match '/learn/collection/:id', to: 'pages#learn', as: 'learn'
 
+  match '/statistics', to: 'pages#statistics'
+
   match '/feedback', to: 'feedbacks#create'
 
   root to: 'pages#index'
