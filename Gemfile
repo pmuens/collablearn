@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.11'
+gem 'rails', '3.2.12'
 
 group :production do
   #gem 'thin', '1.5.0'
@@ -22,7 +22,7 @@ group :assets do
   #gem 'font-awesome-sass-rails', '2.0.0.0'
 end
 
-gem 'jquery-rails', '2.1.3'
+gem 'jquery-rails', '2.2.1'
 gem 'rails_autolink', '1.0.9'
 gem 'rails-i18n', '0.7.0'
 gem 'haml-rails', '0.3.5'
